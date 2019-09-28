@@ -19,9 +19,16 @@
     "@angular/platform-browser": "~8.0.0",
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.1",
+    "angular-password-strength-meter": "0.0.4",
+    "angularfire2": "^5.2.1",
+    "bootstrap": "^4.3.1",
+    "firebase": "^7.0.0",
+    "g": "^2.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.800.0",

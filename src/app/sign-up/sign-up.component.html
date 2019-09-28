@@ -1,0 +1,56 @@
+<div class="jumbotron">
+    <div class="container">
+            <div class="logo"><img src="assets/img/logo.png" width="70px" height="60px">
+                <h5 class="card-title text-center">Welcome to HRAC</h5>
+            </div>
+        <div class="card card-signin my-5">
+             <div class="card-body">
+                <h5 class="card-title text-center">Sign Up</h5>
+                <form class="form-signin">
+                <div class="row">
+                        <div class="col">
+                            <div class="form-label-group">
+                                <label for="inputEmail">Email address</label>
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus> 
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-label-group">
+                                <label for="inputPassword">Password</label>
+                                <input type="password" id="inputPassword"  class="form-control" placeholder="Password" required>
+                                <p class="passwordDescription">Make sure it's at least 15 characters OR at least 8 characters including a number and a lowercase letter.</p>
+                            </div>    
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="form-label-group">
+                                <label for="inputIndexNumber">Index Number</label>
+                                <input type="text" id="inputIndexNumber" class="form-control" placement="bottom" ngbPopover="The index number given by University." placeholder="Index Number" required autofocus> 
+                            </div>
+                            <div class="alert alert-danger" role="alert">
+                                    Please enter a valid index number!
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-label-group">
+                                <label for="inputPasswordRepeat">Re-Enter Password</label>
+                                <input type="password" id="inputPasswordRepeat" class="form-control" placeholder="Re-Enter the Password" required>
+                            </div> 
+                            <div class="alert alert-danger" role="alert">
+                                    Password does not match.
+                            </div>
+                        </div>       
+                </div>
+                <div class="row">
+                    <div class="col">
+                    <button class="btn btn-success btn-block text-uppercase" type="submit">Sign up for HRAC</button>
+                    <p class="passwordDescription">By clicking “Sign up for HRAC”, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Statement.</a></p>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </form>
+            
+            </div>
+        </div>
+    </div>
+</div>
