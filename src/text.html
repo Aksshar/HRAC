@@ -1,0 +1,45 @@
+<div>
+        <div class="col-lg-12">
+         <div class="card">
+             <div class="sm-jumbotron text-center">
+                <h2>User registration</h2>
+             </div>
+            <form class="form-inline col-lg-8" #userRegistrationForm="ngForm">
+        <div class="form-row mb-4">
+        <div class="col-lg-6">
+            <input type="text" name="UserName" #UserName="ngModel" [(ngModel)]="user.UserName">
+            <label>User Name</label>
+        </div>
+        
+        <div class="col-lg-6">
+                <input type="password" name="Password" #Password="ngModel" [(ngModel)]="user.Password">
+                <label>Password</label>
+        </div>
+        </div>
+    
+        <div class="form-row mb-4">
+            <div class="col-lg-12">
+            <input type="text" name="Email" #Email="ngModel" [(ngModel)]="user.Email">
+            <label>Email</label>
+        </div>
+        </div> 
+
+     
+    
+        <div class="form-group">
+            <div class="col-lg-6">
+            <input type="text" name="FirstName" #FirstName="ngModel" [(ngModel)]="user.FirstName">
+            <label>FirstName</label>
+        </div>
+            <div class="col-lg-6">
+            <input type="text" name="LastName" #LastName="ngModel" [(ngModel)]="user.LastName">
+            <label>LastName</label>
+            </div>
+        </div>
+    
+    
+    
+            </form>
+            </div>
+        </div>
+    </div> 

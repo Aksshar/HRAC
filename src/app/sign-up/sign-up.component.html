@@ -1,0 +1,68 @@
+<!-- Default form register -->
+<div>
+        <div class="col-lg-12">
+         <div class="card">
+             <div class="sm-jumbotron text-center">
+                <h2 style="font-family: Georgia; font-style:bold;">User Registration</h2>
+             </div>
+            
+
+<form class="text-center border border-light p-5" #userRegistrationForm="ngForm" action="#!">
+
+        <!-- <p class="h4 mb-4">Sign up</p> -->
+    
+        <div class="form-row">
+            <div class="col">
+                <!-- user name -->
+                <input type="text" class="form-control"  name="UserName" #UserName="ngModel" [(ngModel)]="user.UserName" placeholder="User Name">
+            </div>
+            <div class="col">
+                <!--passwors -->
+               
+                <input type="password" name="Password" #Password="ngModel" [(ngModel)]="user.Password" class="form-control" placeholder="Password">
+                <small class="form-text text-muted">
+                        At least 8 characters and 1 digit
+                </small>
+            </div>
+        </div>
+    
+        <!-- E-mail -->
+        
+        <input type="email" name="Email" #Email="ngModel" [(ngModel)]="user.Email" class="form-control mb-4" placeholder="E-mail">
+    
+        <!-- First name -->
+        <input type="text" name="FirstName" #FirstName="ngModel" [(ngModel)]="user.FirstName" class="form-control mb-4" placeholder="First Name">
+    
+        <!-- Phone number -->
+        <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+        <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+            Optional - for two step authentication
+        </small>
+    
+        <!-- Newsletter -->
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+            <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
+        </div>
+    
+        <!-- Sign up button -->
+        <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+    
+        <!-- Social register -->
+        <!-- <p>or sign up with:</p>
+    
+        <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+        <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+        <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+        <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+    
+        <hr>
+     -->
+        <!-- Terms of service -->
+        <p>By clicking
+            <em>Sign up</em> you agree to our
+            <a href="" target="_blank">terms of service</a>
+    
+    </form>
+
+    <!-- Default form register -->
