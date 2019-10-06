@@ -1,68 +1,88 @@
 <!-- Default form register -->
 <div>
-        <div class="col-lg-12">
-         <div class="card">
-             <div class="sm-jumbotron text-center">
-                <h2 style="font-family: Georgia; font-style:bold;">User Registration</h2>
-             </div>
-            
+    <div class="col-lg-12">
+     <div class="card">
+         <div class="sm-jumbotron text-center">
+            <h2 style="font-family: Georgia; font-style:bold;">User Registration</h2>
+         </div>
+        
 
 <form class="text-center border border-light p-5" #userRegistrationForm="ngForm" action="#!">
 
-        <!-- <p class="h4 mb-4">Sign up</p> -->
-    
-        <div class="form-row">
-            <div class="col">
-                <!-- user name -->
-                <input type="text" class="form-control"  name="UserName" #UserName="ngModel" [(ngModel)]="user.UserName" placeholder="User Name">
-            </div>
-            <div class="col">
-                <!--passwors -->
-               
-                <input type="password" name="Password" #Password="ngModel" [(ngModel)]="user.Password" class="form-control" placeholder="Password">
-                <small class="form-text text-muted">
-                        At least 8 characters and 1 digit
-                </small>
-            </div>
-        </div>
-    
-        <!-- E-mail -->
-        
-        <input type="email" name="Email" #Email="ngModel" [(ngModel)]="user.Email" class="form-control mb-4" placeholder="E-mail">
-    
-        <!-- First name -->
-        <input type="text" name="FirstName" #FirstName="ngModel" [(ngModel)]="user.FirstName" class="form-control mb-4" placeholder="First Name">
-    
-        <!-- Phone number -->
-        <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
-        <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-            Optional - for two step authentication
-        </small>
-    
-        <!-- Newsletter -->
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
-            <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
-        </div>
-    
-        <!-- Sign up button -->
-        <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
-    
-        <!-- Social register -->
-        <!-- <p>or sign up with:</p>
-    
-        <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
-        <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
-        <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
-        <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
-    
-        <hr>
-     -->
-        <!-- Terms of service -->
-        <p>By clicking
-            <em>Sign up</em> you agree to our
-            <a href="" target="_blank">terms of service</a>
-    
-    </form>
+    <!-- <p class="h4 mb-4">Sign up</p> -->
 
-    <!-- Default form register -->
+    <div class="form-row">
+        <div class="col">
+            <!-- user name -->
+            <input type="text" required ngModel name="UserName" #UserName="ngModel" (change)="log(UserName)" class="form-control" required  placeholder="User Name" >
+        <small class="text-danger" *ngIf="UserName.touched && !UserName.valid">User name is required</small>
+        </div>
+        <div class="col"> 
+            <!--passwors --> 
+            
+            <input type="password" required minlength="8" ngModel name="Password" #Password="ngModel" (change)="log(Password)" class="form-control" placeholder="Password" >
+            <small class="form-text text-muted">
+                    At least 8 characters and 1 digit
+            </small>
+            <div class="text-danger" *ngIf="Password.touched && Password.invalid"> 
+                <small *ngIf="Password.errors.required">Password required</small>
+                <small *ngIf="Password.errors.minlength">Password is not strong</small>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- E-mail -->
+    
+    <input type="email" required ngModel name="Email" #Email="ngModel" (change)="log(Email)" class="form-control mb-4" placeholder="E-mail">
+    <div class="text-danger" *ngIf="Email.touched && Email.invalid"> 
+        <small *ngIf="Email.errors.required">Email required*</small>
+        <small *ngIf="Email.errors.email">Enter a valid Email</small>
+    </div>
+
+    <!-- First name -->
+    <input type="text" required ngModel name="FirstName"  #FirstName="ngModel" (change)="log(FirstName)" class="form-control mb-4" placeholder="First Name">
+    <small class="text-danger" *ngIf="FirstName.touched">First name is required</small>
+   
+   
+    <!-- Phone number -->
+    <input type="tel" name="Phone" required ngModel  pattern="^\d{10}$" #Phone="ngModel" (change)="log(Phone)" class="form-control" placeholder="Phone number">
+    <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+        Optional - for two step authentication
+    </small>
+    <div *ngIf="Phone.errors && (Phone.invalid || Phone.touched)">
+        <!-- error property on the ng ngModel -->
+        <small class="text-danger" *ngIf="Phone.errors.required">phone number is required</small>
+        <small class="text-danger"*ngIf="Phone.errors.pattern">phone number must be 10 digits</small>      </div>
+
+    <!-- Newsletter -->
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+        <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
+    </div>
+
+    <!-- Sign up button -->
+    <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+
+    <!-- Social register -->
+    <!-- <p>or sign up with:</p>
+
+    <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+
+    <hr>
+ -->
+    <!-- Terms of service -->
+    <p>By clicking
+        <em>Sign up</em> you agree to our
+        <a href="" target="_blank">terms of service</a>
+
+</form>
+     </div>
+
+</div>
+</div>
+
+<!-- Default form register -->
