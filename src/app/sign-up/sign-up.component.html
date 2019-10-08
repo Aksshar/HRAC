@@ -7,20 +7,20 @@
          </div>
         
 
-<form class="text-center border border-light p-5" #userRegistrationForm="ngForm" action="#!">
+<form  class="text-center border border-light p-5" #form="ngForm" (submit)="onSubmit(form)" autocomplete="off" action="#!">
 
     <!-- <p class="h4 mb-4">Sign up</p> -->
 
     <div class="form-row">
         <div class="col">
             <!-- user name -->
-            <input type="text" required ngModel name="UserName" #UserName="ngModel" (change)="log(UserName)" class="form-control" required  placeholder="User Name" >
+            <input type="text" required  name="UserName" #UserName="ngModel" [(ngModel)]="user.UserName"  class="form-control" required  placeholder="User Name" >
         <small class="text-danger" *ngIf="UserName.touched && !UserName.valid">User name is required</small>
         </div>
         <div class="col"> 
             <!--passwors --> 
             
-            <input type="password" required minlength="8" ngModel name="Password" #Password="ngModel" (change)="log(Password)" class="form-control" placeholder="Password" >
+            <input type="password" required minlength="8" [(ngModel)]="user.Password" name="Password" #Password="ngModel" class="form-control" placeholder="Password" >
             <small class="form-text text-muted">
                     At least 8 characters and 1 digit
             </small>
@@ -34,25 +34,25 @@
 
     <!-- E-mail -->
     
-    <input type="email" required ngModel name="Email" #Email="ngModel" (change)="log(Email)" class="form-control mb-4" placeholder="E-mail">
+    <input type="email" required [pattern]="emailPattern"  name="Email" #Email="ngModel" [(ngModel)]="user.Email" class="form-control mb-3" placeholder="E-mail">
     <div class="text-danger" *ngIf="Email.touched && Email.invalid"> 
-        <small *ngIf="Email.errors.required">Email required*</small>
-        <small *ngIf="Email.errors.email">Enter a valid Email</small>
+        <small *ngIf="Email.errors.required">Email required</small>
+        <small *ngIf="Email.errors.pattern">Enter a valid Email</small>
     </div>
 
     <!-- First name -->
-    <input type="text" required ngModel name="FirstName"  #FirstName="ngModel" (change)="log(FirstName)" class="form-control mb-4" placeholder="First Name">
-    <small class="text-danger" *ngIf="FirstName.touched">First name is required</small>
+    <input type="text" required name="FirstName"  #FirstName="ngModel" [(ngModel)]="user.FirstName" class="form-control mb-3" placeholder="First Name">
+    <small class="text-danger" *ngIf="FirstName.touched && !FirstName.valid">First name is required</small>
    
    
     <!-- Phone number -->
-    <input type="tel" name="Phone" required ngModel  pattern="^\d{10}$" #Phone="ngModel" (change)="log(Phone)" class="form-control" placeholder="Phone number">
+    <input type="tel" name="Phone"  pattern="^\d{10}$" #Phone="ngModel" (ngModel)="user.Phone" class="form-control" placeholder="Phone number">
     <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
         Optional - for two step authentication
     </small>
-    <div *ngIf="Phone.errors && (Phone.invalid || Phone.touched)">
+    <div *ngIf="Phone.errors">
         <!-- error property on the ng ngModel -->
-        <small class="text-danger" *ngIf="Phone.errors.required">phone number is required</small>
+        <!-- <small class="text-danger" *ngIf="Phone.errors.required">phone number is required</small> -->
         <small class="text-danger"*ngIf="Phone.errors.pattern">phone number must be 10 digits</small>      </div>
 
     <!-- Newsletter -->
@@ -62,7 +62,7 @@
     </div>
 
     <!-- Sign up button -->
-    <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+    <button [disabled]="form.form.invalid" class="btn btn-info my-4 btn-block" type="submit" >Sign in</button>
 
     <!-- Social register -->
     <!-- <p>or sign up with:</p>
