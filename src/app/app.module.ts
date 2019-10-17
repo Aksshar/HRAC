@@ -1,3 +1,7 @@
+import { environment } from './../environments/environment';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
 import { RouterModule,Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -21,22 +26,25 @@ import { FormsModule } from '@angular/forms';
     SigninComponent,
     HomeComponent,
     SignUpComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    DashboardComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot([
       {path: '',component: HomeComponent},
       { path: 'Home', component: HomeComponent },
       { path: 'SignIn', component: SigninComponent },
       { path: 'SignUp', component: SignUpComponent },
-      { path: 'Attendance', component: AttendanceComponent}
+      { path: 'Attendance', component: AttendanceComponent },
+      { path: 'Dashboard', component: DashboardComponent}
     ]),
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
