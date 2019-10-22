@@ -1,0 +1,106 @@
+
+
+ 
+    <div class="card-body">
+      <h5 class="card-title">User Management</h5>
+      <p class="card-text">Insert Students by adding their index Numbers and RFID tag Numbers.</p>
+      <div class="alert alert-success" role="alert">
+            Student index inserted Successfully!
+          </div>
+      <form>
+        <div class="form-group">
+          <label for="IndexNumber">Student Index Number</label>
+          <input type="text" class="form-control" id="IndexNumber" style="width:50%;" placeholder="Index Number (eg:1700XXXX).">
+        </div>
+        <div class="alert alert-danger" role="alert">
+                The index number you trying to insert is already exists.!
+        </div>
+        <div class="form-group">
+            <label for="RFIDNumber">RFID card Number</label>
+            <input type="text" class="form-control" id="RFIDNumber" style="width:50%;" placeholder="Enter RFID Number">
+        </div>
+        <div class="alert alert-danger" role="alert">
+                The RFID number you trying to insert is already exists.!
+        </div>
+        <button type="submit" class="btn btn-primary">Insert Student</button>
+      </form>
+      <p>
+            <div class="spinner-grow text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+            <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id count</th>
+                        <th scope="col">Index Number</th>
+                        <th scope="col">RFID Number</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>17000025</td>
+                        <td>1245346787</td>
+                        <td><button type="button" class="btn btn-danger">Delete</button></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>17000041</td>
+                        <td>8967456788</td>
+                        <td><button type="button" class="btn btn-danger">Delete</button></td>
+                      </tr>
+                      <tr>
+                            <th scope="row">3</th>
+                            <td>17020883</td>
+                            <td>1245206787</td>
+                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+                          </tr>
+                      
+                    </tbody>
+                  </table>
+
+                  <p><h5 class="card-title">Registered Users</h5>
+                  <p>
+                        <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Index Number</th>
+                                    <th scope="col">RFID Number</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>17000025</td>
+                                    <td>1245346787</td>
+                                    <td>Benura Abayawardnana</td>
+                                    <td>bena23@gmail.com</td>
+                                    <td><button type="button" class="btn btn-success">Edit</button></td>
+                                    <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                  </tr>
+                                  <tr>
+                                    <td>17000041</td>
+                                    <td>8967456788</td>
+                                    <td>Ramesh Aksshar</td>
+                                    <td>akssharramesh001@gmail.com</td>
+                                    <td><button type="button" class="btn btn-success">Edit</button></td>
+                                    <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                  </tr>
+                                  <tr>
+                                        <td>17020883</td>
+                                        <td>1245206787</td>
+                                        <td>Thushanthy Walter</td>
+                                        <td>thushywlater@gmail.com</td>
+                                        <td><button type="button" class="btn btn-success">Edit</button></td>
+                                        <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                      </tr>
+                                  
+                                </tbody>
+                              </table>
+                 
+      
+
+    </div>
+
+    

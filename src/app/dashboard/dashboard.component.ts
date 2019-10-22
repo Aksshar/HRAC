@@ -1,17 +1,24 @@
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'dashboard',
+  selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private db: AngularFirestore) { }
-  save(index) {
-      this.db.collection('studentIndex').add({
-      index
-      });
+
+  constructor(private route: ActivatedRoute, private router: Router) { }
+
+  showusers() {
+    this.router.navigate(['manage-users'], { relativeTo: this.route });
+  }
+
+  showbooking() {
+    this.router.navigate(['manage-booking'], { relativeTo: this.route });
+  }
+  showdashboard() {
+    this.router.navigate(['dashboard-admin'], { relativeTo: this.route });
   }
 
   ngOnInit() {

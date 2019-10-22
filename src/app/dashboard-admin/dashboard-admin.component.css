@@ -1,0 +1,7 @@
+img{
+    width: 65px;
+    height: 65px;
+    border-radius: 100%;
+    border: 0.4px solid black;
+    padding: 2px;
+}
