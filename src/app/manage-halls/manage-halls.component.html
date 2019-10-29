@@ -1,0 +1,143 @@
+ <div class="card-body">
+    <h5 class="card-title">Halls Management</h5>
+    <p class="card-text">Insert Halls by adding their Code Numbers and Seat capacity.</p>
+
+    <div class="alert alert-success" role="alert">
+            Hall inserted Successfully!
+          </div>
+      
+      <form [formGroup]="myGroupForm">
+        <div class="form-group">
+          <label for="HallNumber">Hall Number</label>
+          <input type="text" class="form-control" formControlName="HallNumber" id="HallNumber" style="width:50%;" [ngClass]="{ 'is-invalid': HallNumber.touched && HallNumber.invalid }" placeholder="HallNumber (eg:S104).">
+          <div *ngIf="HallNumber.touched && HallNumber.invalid" class="invalid-feedback">
+            Hall Number is required
+          </div>
+        </div>
+        
+        <div class="invalid-feedback" role="alert">
+              The Hall Number you trying to insert is already exists.!
+        </div>
+        <div class="form-group">
+            <label for="Capacity">Capacity</label>
+            <input type="text" class="form-control" formControlName="Capacity" id="Capacity" style="width:50%;" [ngClass]="{ 'is-invalid': Capacity.touched && Capacity.invalid }" placeholder="Enter capacity">
+            <div *ngIf="Capacity.touched && Capacity.invalid" class="invalid-feedback">
+              capacity is required
+            </div>
+          </div>
+        
+        <button type="submit" class="btn btn-success">Insert Hall</button>
+      </form>    
+<div class="row">
+
+<div class="halls">
+  <div class="jumbotron">
+  <h1 class="display-8">WOO1</h1>
+  <p class="lead">Seating Capacity : </p>
+  <p><strong>Available</strong></p>
+  <hr class="my-4">
+<button type="button" class="btn btn-sm btn-danger">Delete</button>
+<button type="button" class="btn btn-sm btn-warning">Not Available</button>
+</div>
+</div>
+
+
+
+<div class="halls">
+  <div class="jumbotron">
+  <h1 class="display-8">WOO2</h1>
+  <p class="lead">Seating Capacity : </p>
+  <p><strong>Available</strong></p>
+  <hr class="my-4">
+<button type="button" class="btn btn-sm btn-danger">Delete</button>
+<button type="button" class="btn btn-sm btn-warning">Not Available</button>
+</div>
+</div>
+
+
+
+
+
+<div class="halls">
+  <div class="jumbotron">
+  <h1 class="display-8">S203</h1>
+  <p class="lead">Seating Capacity : </p>
+  <p><strong>Available</strong></p>
+  <hr class="my-4">
+<button type="button" class="btn btn-sm btn-danger">Delete</button>
+<button type="button" class="btn btn-sm btn-warning">Not Available</button>
+</div>
+</div>
+
+
+
+
+<div class="halls">
+  <div class="jumbotron">
+  <h1 class="display-8">S104</h1>
+  <p class="lead">Seating Capacity : </p>
+  <p><strong>Available</strong></p>
+  <hr class="my-4">
+<button type="button" class="btn btn-sm btn-danger">Delete</button>
+<button type="button" class="btn btn-sm btn-warning">Not Available</button>
+</div>
+</div>
+
+
+
+
+<div class="halls">
+  <div class="jumbotron">
+  <h1 class="display-8">E401</h1>
+  <p class="lead">Seating Capacity : </p>
+  <p><strong>Available</strong></p>
+  <hr class="my-4">
+<button type="button" class="btn btn-sm btn-danger">Delete</button>
+<button type="button" class="btn btn-sm btn-warning">Not Available</button>
+</div>
+</div>
+
+
+
+
+<div class="halls">
+  <div class="jumbotron">
+  <h1 class="display-8">E205</h1>
+  <p class="lead">Seating Capacity : </p>
+  <p><strong>Available</strong></p>
+  <hr class="my-4">
+<button type="button" class="btn btn-sm btn-danger">Delete</button>
+<button type="button" class="btn btn-sm btn-warning">Not Available</button>
+</div>
+</div>
+
+
+
+
+<div class="halls">
+  <div class="jumbotron">
+  <h1 class="display-8">S102</h1>
+  <p class="lead">Seating Capacity : </p>
+  <p><strong>Available</strong></p>
+  <hr class="my-4">
+<button type="button" class="btn btn-sm btn-danger">Delete</button>
+<button type="button" class="btn btn-sm btn-warning">Not Available</button>
+</div>
+</div>
+
+
+
+
+<div class="halls">
+  <div class="jumbotron">
+  <h1 class="display-8">S103</h1>
+  <p class="lead">Seating Capacity : </p>
+  <p><strong>Available</strong></p>
+  <hr class="my-4">
+<button type="button" class="btn btn-sm btn-danger">Delete</button>
+<button type="button" class="btn btn-sm btn-warning">Not Available</button>
+</div>
+</div>
+ 
+</div>
+ </div>

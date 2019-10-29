@@ -15,11 +15,12 @@ import { SigninComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AttendanceComponent } from './attendance/attendance.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { ManageHallsComponent } from './manage-halls/manage-halls.component';
 
 
 
@@ -36,7 +37,8 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
     DashboardComponent,
     ManageUsersComponent,
     ManageBookingComponent,
-    DashboardAdminComponent
+    DashboardAdminComponent,
+    ManageHallsComponent
  
   ],
   imports: [
@@ -53,6 +55,7 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
           { path: 'dashboard-admin', component: DashboardAdminComponent},
           { path: 'manage-users', component: ManageUsersComponent },
           { path: 'manage-booking', component: ManageBookingComponent },
+          { path: 'manage-halls', component: ManageHallsComponent },
           
         ]
       }
@@ -61,6 +64,7 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
     FormsModule,
     AppRoutingModule,
     NgbModule,
+    ReactiveFormsModule
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]

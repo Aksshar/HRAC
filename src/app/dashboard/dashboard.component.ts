@@ -20,6 +20,9 @@ export class DashboardComponent implements OnInit {
   showdashboard() {
     this.router.navigate(['dashboard-admin'], { relativeTo: this.route });
   }
+  showmangehalls() {
+    this.router.navigate(['manage-halls'], { relativeTo: this.route });
+  }
 
   ngOnInit() {
   }
