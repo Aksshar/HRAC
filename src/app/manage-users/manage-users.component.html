@@ -4,14 +4,14 @@
     <div class="card-body">
       <h5 class="card-title">User Management</h5>
       <p class="card-text">Insert Students by adding their index Numbers and RFID tag Numbers.</p>
-      <div class="alert alert-success" role="alert">
+      <div *ngIf="showMsg" class="alert alert-success" role="alert">
             Student index inserted Successfully!
           </div>
       
-      <form [formGroup]="IndexForm" (submit)="onSubmit(IndexForm)">
+      <form [formGroup]="IndexForm">
         <div class="form-group">
           <label for="IndexNumber">Student Index Number</label>
-          <input type="text" class="form-control" formControlName="IndexNumber" id="IndexNumber" style="width:50%;" [ngClass]="{ 'is-invalid': IndexNumber.touched && IndexNumber.invalid }" placeholder="Index Number (eg:1700XXXX).">
+          <input type="text" class="form-control" formControlName="IndexNumber" id="IndexNumber" style="width:50%;" [ngClass]="{ 'is-invalid': (IndexNumber.touched && IndexNumber.invalid) || (IndexNumber.value && IndexNumber.invalid) }" placeholder="Index Number (eg:1700XXXX).">
          <div *ngIf="IndexNumber.value && IndexNumber.dirty" class="invalid-feedback">
   {{ IndexNumber.value }} is already taken
 </div>
@@ -30,12 +30,12 @@
         
         <div class="form-group">
             <label for="RFIDNumber">RFID card Number</label>
-            <input type="text" class="form-control" formControlName="RFIDNumber" id="RFIDNumber" style="width:50%;" [ngClass]="{ 'is-invalid': RFIDNumber.touched && RFIDNumber.invalid }" placeholder="Enter RFID Number">
+            <input type="text" class="form-control" formControlName="RFIDNumber" id="RFIDNumber" style="width:50%;" [ngClass]="{ 'is-invalid': (RFIDNumber.touched && RFIDNumber.invalid) || (RFIDNumber.value && RFIDNumber.invalid) }" placeholder="Enter RFID Number">
             <div *ngIf="!RFIDNumber.value" class="invalid-feedback">
               RFID Number is required
             </div>
 
-            <div *ngIf="RFIDNumber.value && IndexNumber.dirty" class="invalid-feedback">
+            <div *ngIf="RFIDNumber.value && RFIDNumber.dirty" class="invalid-feedback">
             {{ RFIDNumber.value }} is already taken
             </div>
 
@@ -46,7 +46,7 @@
             </div>
           </div>
         
-        <button type="submit" class="btn btn-primary">Insert Student</button>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Insert Student</button>
       </form>    
       <p>
             

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore} from 'angularfire2/firestore';
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { map, take, debounceTime} from 'rxjs/Operators';
+import { ManageUserService } from '../manage-user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-users',
@@ -11,7 +13,7 @@ import { map, take, debounceTime} from 'rxjs/Operators';
 export class ManageUsersComponent implements OnInit {
   
   IndexForm: FormGroup;
-  constructor(private afs: AngularFirestore, private fb: FormBuilder){}
+  constructor(private afs: AngularFirestore, private fb: FormBuilder,private manageuser: ManageUserService, private router: Router){}
 
   
   ngOnInit() {
@@ -32,6 +34,18 @@ export class ManageUsersComponent implements OnInit {
   get RFIDNumber() {
     return this.IndexForm.get('RFIDNumber')
   }
+
+  showMsg : boolean = false;
+  onSubmit(){
+    let data = this.IndexForm.value;
+    this.IndexForm.reset();
+    this.manageuser.insertIndex(data).then(res => {
+      this.showMsg = true;
+      console.log("Record inserted successfully");
+    });
+  }
+
+
  
 }
 

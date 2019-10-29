@@ -6,6 +6,7 @@ import { RouterModule,Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ManageUserService } from './manage-user.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -66,7 +67,7 @@ import { ManageHallsComponent } from './manage-halls/manage-halls.component';
     NgbModule,
     ReactiveFormsModule
   ],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore,ManageUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
