@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from
 import { map, take, debounceTime} from 'rxjs/Operators';
 import { ManageUserService } from '../manage-user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-users',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class ManageUsersComponent implements OnInit {
   
   IndexForm: FormGroup;
-  constructor(private afs: AngularFirestore, private fb: FormBuilder,private manageuser: ManageUserService, private router: Router){}
+  constructor(private afs: AngularFirestore, private fb: FormBuilder,private manageuser: ManageUserService, private router: Router, private toastr: ToastrService){}
 
   
   ngOnInit() {
@@ -35,13 +36,11 @@ export class ManageUsersComponent implements OnInit {
     return this.IndexForm.get('RFIDNumber')
   }
 
-  showMsg : boolean = false;
   onSubmit(){
     let data = this.IndexForm.value;
     this.IndexForm.reset();
     this.manageuser.insertIndex(data).then(res => {
-      this.showMsg = true;
-      console.log("Record inserted successfully");
+      this.toastr.success('Student Index inserted successfully!');
     });
   }
 

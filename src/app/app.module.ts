@@ -6,6 +6,8 @@ import { RouterModule,Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { ManageUserService } from './manage-user.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -65,7 +67,9 @@ import { ManageHallsComponent } from './manage-halls/manage-halls.component';
     FormsModule,
     AppRoutingModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({ timeOut: 6000, positionClass: 'toast-top-center', preventDuplicates: false }),
   ],
   providers: [AngularFirestore,ManageUserService],
   bootstrap: [AppComponent]

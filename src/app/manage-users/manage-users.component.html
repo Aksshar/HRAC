@@ -3,11 +3,7 @@
  
     <div class="card-body">
       <h5 class="card-title">User Management</h5>
-      <p class="card-text">Insert Students by adding their index Numbers and RFID tag Numbers.</p>
-      <div *ngIf="showMsg" class="alert alert-success" role="alert">
-            Student index inserted Successfully!
-          </div>
-      
+      <p class="card-text">Insert Students by adding their index Numbers and RFID tag Numbers.</p> 
       <form [formGroup]="IndexForm">
         <div class="form-group">
           <label for="IndexNumber">Student Index Number</label>
