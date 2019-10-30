@@ -4,7 +4,8 @@
   "newProjectRoot": "projects",
   "projects": {
     "HRAC": {
-      "projectType": "application",
+      "projectType": "application", 
+      
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
