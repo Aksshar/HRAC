@@ -17,6 +17,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HallComponent } from './hall/hall.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SignUpComponent,
     AttendanceComponent,
     DashboardComponent,
+    HallComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -35,6 +37,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       {path: '',component: HomeComponent},
       { path: 'Home', component: HomeComponent },
       { path: 'SignIn', component: SigninComponent },
+      { path: 'Hall', component: HallComponent },
       { path: 'SignUp', component: SignUpComponent },
       { path: 'Attendance', component: AttendanceComponent },
       { path: 'Dashboard', component: DashboardComponent}
