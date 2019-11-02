@@ -23,6 +23,9 @@ export class DashboardComponent implements OnInit {
   showmangehalls() {
     this.router.navigate(['manage-halls'], { relativeTo: this.route });
   }
+  showcurrentsem(){
+    this.router.navigate(['currentsemester'], { relativeTo: this.route});
+  }
 
   ngOnInit() {
   }

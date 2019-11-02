@@ -1,18 +1,23 @@
  <div class="card-body">
     <h5 class="card-title">Halls Management</h5>
     <p class="card-text">Insert Halls by adding their Code Numbers and Seat capacity.</p>
-
-    <div class="alert alert-success" role="alert">
-            Hall inserted Successfully!
-          </div>
-      
-      <form [formGroup]="myGroupForm">
+      <form [formGroup]="HallsForm">
         <div class="form-group">
           <label for="HallNumber">Hall Number</label>
-          <input type="text" class="form-control" formControlName="HallNumber" id="HallNumber" style="width:50%;" [ngClass]="{ 'is-invalid': HallNumber.touched && HallNumber.invalid }" placeholder="HallNumber (eg:S104).">
-          <div *ngIf="HallNumber.touched && HallNumber.invalid" class="invalid-feedback">
-            Hall Number is required
-          </div>
+          <input type="text" class="form-control" formControlName="HallNumber" id="HallNumber" style="width:50%;" [ngClass]="{ 'is-invalid': (HallNumber.touched && HallNumber.invalid) || (HallNumber.value && HallNumber.invalid) }" placeholder="HallNumber (eg:S104).">
+          <div *ngIf="!HallNumber.value" class="invalid-feedback">
+              Hall Number is required
+            </div>
+
+            <div *ngIf="HallNumber.value && HallNumber.dirty" class="invalid-feedback">
+            {{ HallNumber.value }} is already taken
+            </div>
+
+            <div *ngIf="HallNumber.pending" class="notification is-info">
+            <div class="spinner-border spinner-border-sm text-success" role="status">
+                <span class="sr-only">Loading...</span>
+                </div>    Checking availability of {{ HallNumber.value }}
+            </div>
         </div>
         
         <div class="invalid-feedback" role="alert">
@@ -26,7 +31,7 @@
             </div>
           </div>
         
-        <button type="submit" class="btn btn-success">Insert Hall</button>
+        <button type="submit" class="btn btn-success" (click)="onSubmit()">Insert Hall</button>
       </form>    
 <div class="row">
 
