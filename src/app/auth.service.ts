@@ -6,7 +6,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Router } from  "@angular/router";
 import { auth } from  'firebase/app';
-import { AngularFireAuth } from  "@angular/fire/auth";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { ToastrService } from 'ngx-toastr';
+
 
 
 @Injectable({
@@ -14,7 +16,7 @@ import { AngularFireAuth } from  "@angular/fire/auth";
 })
 export class AuthService {
   user$: Observable<firebase.User>;
-  constructor(private db: AngularFireDatabase, public afAuth: AngularFireAuth, public router: Router, private afs: AngularFirestore) {
+  constructor(private db: AngularFireDatabase, public afAuth: AngularFireAuth, public router: Router, private afs: AngularFirestore, private toastr: ToastrService) {
     this.user$ = afAuth.authState;
   }
   
@@ -29,5 +31,26 @@ export class AuthService {
     } catch (e) {
         alert("Error!" + e.message);
     }
+  }
+  
+
+  async  login(email: string, password: string) {
+
+    try {
+        await this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        this.router.navigate(['/']);
+        return false;
+    } catch (e) {
+      this.toastr.error(e.message);
+      return true;
+    }
+
 }
+
+async logout() {
+  await this.afAuth.auth.signOut();
+  localStorage.removeItem('user');
+  this.router.navigate(['SignIn']);
+}
+  
 }

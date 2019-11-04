@@ -14,16 +14,9 @@ import * as firebase from 'firebase';
 export class NavbarComponent implements OnInit {
 
   user: firebase.User;
-  email;
+
   constructor(private router: RouterModule, public authService: AuthService, private afAuth: AngularFireAuth) {
-   afAuth.authState.subscribe(res => {
-    if (res && res.uid) {
-      console.log('user is logged in');
-      this.email = res.email;
-    } else {
-      console.log('user not logged in');
-    }
-  });
+   afAuth.authState.subscribe(user => this.user = user);
    }
    
 

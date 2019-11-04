@@ -1,5 +1,63 @@
-<ul>
-  <li *ngFor="let todo of RFID ">
-    <div class="alert alert-danger">{{ todo.ID }}</div>
-  </li>
-</ul>
+<h5 class="time" >Update Lecture Time Table</h5>
+<hr>
+<div class="row">
+  <div class="col-2">
+  <div class="time">
+    <label for="time">Select Lecture time :</label>
+    <ngb-timepicker [(ngModel)]="time" [meridian]="true" id="time"></ngb-timepicker>
+    <p><small id="selectTimeHelp" class="form-text text-muted">You Should select the time to update lecture Schedule.</small></p>
+    <button class="btn btn-sm btn-success"  aria-describedby="selectTimeHelp">
+        Time selected - {{time.hour}} : {{time.minute}}
+    </button>
+  </div>
+ </div>
+ <div class="col-2">
+    <div class="time">
+      <label for="time">Select Lecture time :</label>
+      <ngb-timepicker [(ngModel)]="time" [meridian]="true" id="time"></ngb-timepicker>
+      <p><small id="selectTimeHelp" class="form-text text-muted">You Should select the time to update lecture Schedule.</small></p>
+      <button class="btn btn-sm btn-success"  aria-describedby="selectTimeHelp">
+          Time selected - {{time.hour}} : {{time.minute}}
+      </button>
+    </div>
+   </div>
+</div>
+
+
+<form [formGroup]="timetableForm" (ngSubmit)="onSubmit()">
+    <div class="form-group" style="width:50%;">
+      <label for="subject">Subject Code</label>
+      <input type="text" class="form-control" id="subject" formControlName="subjectCode" [ngClass]="{'is-invalid': subjectCode.touched && subjectCode.invalid}" placeholder="Enter Subject Code">
+      <div *ngIf="subjectCode.touched && subjectCode.invalid" class="invalid-feedback">
+          Subject Code is required.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="year">Academic Year</label>
+        <div class="input-group mb-3" style="width:50%;">
+            <select class="custom-select" id="year" formControlName="academicYear" [ngClass]="{'is-invalid': academicYear.touched && academicYear.invalid}">
+              <option value="1">1st Year</option>
+              <option value="2">2nd Year</option>
+              <option value="3">3rd Year</option>
+              <option value="3">4th Year</option>
+            </select>
+            <div class="input-group-append">
+              <label class="input-group-text" for="year">Year</label>
+            </div>
+            <div *ngIf="academicYear.touched && academicYear.invalid" class="invalid-feedback">
+                Academic Year is required.
+              </div>
+          </div>
+          
+      </div>
+      <div class="form-group" style="width:50%;">
+          <label for="hall">Lecture Hall</label>
+          <input type="text" class="form-control" id="hall" formControlName="lectureHall" [ngClass]="{'is-invalid': lectureHall.touched && lectureHall.invalid}" placeholder="Enter Lecture Hall Number">
+          <div *ngIf="lectureHall.touched && lectureHall.invalid" class="invalid-feedback">
+              lecture Hall is required.
+            </div>
+        </div>
+    <button type="submit" class="btn btn-primary">Insert Into Time Schedule</button>
+  </form>
+  <hr>
+
