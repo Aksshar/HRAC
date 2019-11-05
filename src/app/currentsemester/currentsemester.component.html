@@ -3,9 +3,8 @@
 <div class="row">
   <div class="col-2">
   <div class="time">
-    <label for="time">Select Lecture time :</label>
+    <label for="time">Lecture starting time :</label>
     <ngb-timepicker [(ngModel)]="time" [meridian]="true" id="time"></ngb-timepicker>
-    <p><small id="selectTimeHelp" class="form-text text-muted">You Should select the time to update lecture Schedule.</small></p>
     <button class="btn btn-sm btn-success"  aria-describedby="selectTimeHelp">
         Time selected - {{time.hour}} : {{time.minute}}
     </button>
@@ -13,17 +12,16 @@
  </div>
  <div class="col-2">
     <div class="time">
-      <label for="time">Select Lecture time :</label>
+      <label for="time">Lecture ending time :</label>
       <ngb-timepicker [(ngModel)]="time" [meridian]="true" id="time"></ngb-timepicker>
-      <p><small id="selectTimeHelp" class="form-text text-muted">You Should select the time to update lecture Schedule.</small></p>
       <button class="btn btn-sm btn-success"  aria-describedby="selectTimeHelp">
           Time selected - {{time.hour}} : {{time.minute}}
       </button>
-      afdjkla
+      
     </div>
    </div>
 </div>
-
+<p><small id="selectTimeHelp" class="form-text text-muted">You Should select the time to update lecture Schedule.</small></p>
 
 <form [formGroup]="timetableForm" (ngSubmit)="onSubmit()">
     <div class="form-group" style="width:50%;">
