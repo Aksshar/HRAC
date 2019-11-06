@@ -36,12 +36,14 @@ export class ManageUsersComponent implements OnInit {
     return this.IndexForm.get('RFIDNumber')
   }
 
-  onSubmit(){
+  onSubmit() {
     let data = this.IndexForm.value;
-    this.IndexForm.reset();
-    this.manageuser.insertIndex(data).then(res => {
-      this.toastr.success('Student Index inserted successfully!');
-    });
+    if (this.IndexForm.valid) {
+      this.IndexForm.reset();
+      this.manageuser.insertIndex(data).then(res => {
+        this.toastr.success('Student Index inserted successfully!');
+      });
+    }
   }
 
 

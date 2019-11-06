@@ -23,40 +23,59 @@
 </div>
 <p><small id="selectTimeHelp" class="form-text text-muted">You Should select the time to update lecture Schedule.</small></p>
 
-<form [formGroup]="timetableForm" (ngSubmit)="onSubmit()">
-    <div class="form-group" style="width:50%;">
-      <label for="subject">Subject Code</label>
-      <input type="text" class="form-control" id="subject" formControlName="subjectCode" [ngClass]="{'is-invalid': subjectCode.touched && subjectCode.invalid}" placeholder="Enter Subject Code">
-      <div *ngIf="subjectCode.touched && subjectCode.invalid" class="invalid-feedback">
-          Subject Code is required.
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="year">Academic Year</label>
-        <div class="input-group mb-3" style="width:50%;">
-            <select class="custom-select" id="year" formControlName="academicYear" [ngClass]="{'is-invalid': academicYear.touched && academicYear.invalid}">
-              <option value="1">1st Year</option>
-              <option value="2">2nd Year</option>
-              <option value="3">3rd Year</option>
-              <option value="3">4th Year</option>
-            </select>
-            <div class="input-group-append">
-              <label class="input-group-text" for="year">Year</label>
-            </div>
-            <div *ngIf="academicYear.touched && academicYear.invalid" class="invalid-feedback">
-                Academic Year is required.
+<div class="row">
+  <div class="col">
+      <form [formGroup]="timetableForm" (ngSubmit)="onSubmit()">
+          <div class="form-group" >
+            <label for="subject">Subject Code</label>
+            <input type="text" class="form-control" id="subject" formControlName="subjectCode" [ngClass]="{'is-invalid': subjectCode.touched && subjectCode.invalid}" placeholder="Enter Subject Code">
+            <div *ngIf="subjectCode.touched && subjectCode.invalid" class="invalid-feedback">
+                Subject Code is required.
               </div>
           </div>
-          
-      </div>
-      <div class="form-group" style="width:50%;">
-          <label for="hall">Lecture Hall</label>
-          <input type="text" class="form-control" id="hall" formControlName="lectureHall" [ngClass]="{'is-invalid': lectureHall.touched && lectureHall.invalid}" placeholder="Enter Lecture Hall Number">
-          <div *ngIf="lectureHall.touched && lectureHall.invalid" class="invalid-feedback">
-              lecture Hall is required.
+          <div class="form-group">
+              <label for="year">Academic Year</label>
+              <div class="input-group mb-3">
+                  <select class="custom-select" id="year" formControlName="academicYear" [ngClass]="{'is-invalid': academicYear.touched && academicYear.invalid}">
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="3">4th Year</option>
+                  </select>
+                  <div class="input-group-append">
+                    <label class="input-group-text" for="year">Year</label>
+                  </div>
+                  <div *ngIf="academicYear.touched && academicYear.invalid" class="invalid-feedback">
+                      Academic Year is required.
+                    </div>
+                </div>
+                
             </div>
+            <div class="form-group">
+                <label for="hall">Lecture Hall</label>
+                <input type="text" class="form-control" id="hall" formControlName="lectureHall" [ngClass]="{'is-invalid': lectureHall.touched && lectureHall.invalid}" placeholder="Enter Lecture Hall Number">
+                <div *ngIf="lectureHall.touched && lectureHall.invalid" class="invalid-feedback">
+                    lecture Hall is required.
+                  </div>
+              </div>
+      
+             
+          <button type="submit" class="btn btn-primary">Insert Into Time Schedule</button>
+        </form>
+        <hr>
+  </div>
+  <div class="col" style="padding-left: 100px;">
+      <label for="date">Select Lecture Dates:</label>
+      <div class="input-group" style="width:50%;">
+        <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
         </div>
-    <button type="submit" class="btn btn-primary">Insert Into Time Schedule</button>
-  </form>
-  <hr>
+        <p style="padding-top:10px;"><button type="submit" class="btn btn-sm btn-primary" (click)="selectDates()">Select date</button></p>
+        <div style="padding-top: 5px;" *ngFor="let Date of Dates"><button type="button" class="btn btn-warning">
+            {{Date.year}}/{{Date.month}}/{{Date.day}}  <button type="button" class="btn btn-danger" (click)="delete(Date.id)">X</button>
+        </button>            
+        </div>
+  </div>
+</div>
+
+
 

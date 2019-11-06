@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore'; 
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-currentsemester',
@@ -8,10 +9,22 @@ import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from
   styleUrls: ['./currentsemester.component.css']
 })
 export class CurrentsemesterComponent implements OnInit {
-  RFID: any;
+  Dates: any;
   timetableForm: FormGroup;
   constructor(private db:AngularFirestore, private fb:FormBuilder) { }
-  time = {hour: 13, minute: 30};
+  time = { hour: 13, minute: 30 };
+  model: NgbDateStruct;
+  
+  selectDates() {
+    return this.db.collection("Dates").add(this.model).then(function (docRef) {
+      console.log("Date written: ", docRef.id);
+    });
+  }
+
+  delete(Date) {
+    console.log(Date);
+    return this.db.collection("Dates").doc('Date').delete();
+  }
 
   toggleMeridian(time) {
     this.time = time;
@@ -21,12 +34,9 @@ export class CurrentsemesterComponent implements OnInit {
     this.timetableForm = this.fb.group({
       subjectCode: ['', [Validators.required]],
       academicYear: ['', [Validators.required]],
-      lectureHall: ['',[Validators.required]]
+      lectureHall: ['', [Validators.required]],
     });
-    this.db.collection('RFID_NO').valueChanges().subscribe(val => {
-      console.log(val);
-      this.RFID = val;
-    })
+      
   }
 
   get subjectCode() {
