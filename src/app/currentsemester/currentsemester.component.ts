@@ -36,7 +36,11 @@ export class CurrentsemesterComponent implements OnInit {
       academicYear: ['', [Validators.required]],
       lectureHall: ['', [Validators.required]],
     });
-      
+    this.db.collection('Dates').valueChanges().subscribe(val => {
+      console.log(val);
+      this.Dates = val;
+    })
+  
   }
 
   get subjectCode() {

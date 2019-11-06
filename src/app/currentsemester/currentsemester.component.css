@@ -6,7 +6,15 @@
 .timecard{
     width:40%;
     padding: 5px;
+    text-align: center;
     background-color: blueviolet;
-    color:#ffff;
-    border-radius: 10px;
+    color: #ffff;
+    border-radius: 5px;
+    box-shadow: black;
+}
+
+.remove{
+    background-color: #ffff;
+    color: black;
+    padding:2px;
 }

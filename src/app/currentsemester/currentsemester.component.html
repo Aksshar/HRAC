@@ -70,9 +70,8 @@
         <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
         </div>
         <p style="padding-top:10px;"><button type="submit" class="btn btn-sm btn-primary" (click)="selectDates()">Select date</button></p>
-        <div style="padding-top: 5px;" *ngFor="let Date of Dates"><button type="button" class="btn btn-warning">
-            {{Date.year}}/{{Date.month}}/{{Date.day}}  <button type="button" class="btn btn-danger" (click)="delete(Date.id)">X</button>
-        </button>            
+        <div style="padding-top: 5px;" *ngFor="let Date of Dates"><div class="timecard">
+            {{Date.year}}/{{Date.month}}/{{Date.day}} - <button class="btn btn-sm btn-warning">remove</button></div>         
         </div>
   </div>
 </div>

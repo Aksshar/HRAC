@@ -1,3 +1,4 @@
+import { DateService } from './date.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { environment } from './../environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -78,7 +79,7 @@ import { CurrentsemesterComponent } from './currentsemester/currentsemester.comp
     BrowserAnimationsModule,
     ToastrModule.forRoot({ timeOut: 6000, positionClass: 'toast-top-center', preventDuplicates: false }),
   ],
-  providers: [AngularFirestore,ManageUserService,ManageHallsService,AngularFireDatabase, AuthService,AngularFireAuth],
+  providers: [AngularFirestore,ManageUserService,ManageHallsService,AngularFireDatabase, AuthService,AngularFireAuth,DateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
