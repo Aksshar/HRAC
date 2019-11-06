@@ -1,7 +1,9 @@
+import { DateService } from './../date.service';
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore'; 
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore'; 
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Dates } from './dates';
 
 @Component({
   selector: 'app-currentsemester',
@@ -11,20 +13,16 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 export class CurrentsemesterComponent implements OnInit {
   Dates: any;
   timetableForm: FormGroup;
-  constructor(private db:AngularFirestore, private fb:FormBuilder) { }
+  list: Dates[];
+  constructor(private db:AngularFirestore, private fb:FormBuilder, private dateservice: DateService) { }
   time = { hour: 13, minute: 30 };
   model: NgbDateStruct;
   
   selectDates() {
     return this.db.collection("Dates").add(this.model).then(function (docRef) {
-      console.log("Date written: ", docRef.id);
     });
   }
 
-  delete(Date) {
-    console.log(Date);
-    return this.db.collection("Dates").doc('Date').delete();
-  }
 
   toggleMeridian(time) {
     this.time = time;
@@ -35,13 +33,29 @@ export class CurrentsemesterComponent implements OnInit {
       subjectCode: ['', [Validators.required]],
       academicYear: ['', [Validators.required]],
       lectureHall: ['', [Validators.required]],
+      lecturer: ['',[Validators.required]]
     });
-    this.db.collection('Dates').valueChanges().subscribe(val => {
-      console.log(val);
-      this.Dates = val;
-    })
+    
+
+
+    this.dateservice.getUsers().subscribe(actionArray => {
+      this.list = actionArray.map(item => {
+        return {
+          id: item.payload.doc.id,
+          ...item.payload.doc.data()
+        } as Dates;
+      })
+    });
+
+
   
   }
+
+
+  onDelete(id: string) {
+      this.db.doc('Dates/' + id).delete();
+  }
+
 
   get subjectCode() {
     return this.timetableForm.get('subjectCode');
@@ -53,6 +67,10 @@ export class CurrentsemesterComponent implements OnInit {
 
   get lectureHall() {
     return this.timetableForm.get('lectureHall');
+  }
+
+  get lecturer() {
+    return this.timetableForm.get('lecturer');
   }
 
   onSubmit(){

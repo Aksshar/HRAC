@@ -12,14 +12,6 @@ export class DateService {
   }
 
   getUsers() {
-    this.dates = this.db.collection('Dates').snapshotChanges().map(
-      changes => {
-      return changes.map(
-      a => {
-      const data = a.payload.doc.data() as Dates;
-      data.id = a.payload.doc.id;
-      return data;
-      });
-      });
+    return this.db.collection('Dates').snapshotChanges();
   }
 }

@@ -58,6 +58,15 @@
                     lecture Hall is required.
                   </div>
               </div>
+
+              <div class="form-group">
+                  <label for="lecturer">Lecturer Name:</label>
+                  <input type="text" class="form-control" id="lecturer" formControlName="lecturer" [ngClass]="{'is-invalid': lecturer.touched && lecturer.invalid}" placeholder="Enter lecturer Name">
+                  <div *ngIf="lecturer.touched && lecturer.invalid" class="invalid-feedback">
+                      lecturer name is required.
+                    </div>
+                </div>
+        
       
              
           <button type="submit" class="btn btn-primary">Insert Into Time Schedule</button>
@@ -70,8 +79,8 @@
         <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
         </div>
         <p style="padding-top:10px;"><button type="submit" class="btn btn-sm btn-primary" (click)="selectDates()">Select date</button></p>
-        <div style="padding-top: 5px;" *ngFor="let Date of Dates"><div class="timecard">
-            {{Date.year}}/{{Date.month}}/{{Date.day}} - <button class="btn btn-sm btn-warning">remove</button></div>         
+        <div style="padding-top: 5px;" *ngFor="let Date of list"><div class="timecard">
+            {{Date.year}}/{{Date.month}}/{{Date.day}} - <button class="btn btn-sm btn-warning" (click)="onDelete(Date.id)"><strong>remove</strong></button></div>         
         </div>
   </div>
 </div>
