@@ -1,31 +1,19 @@
 <h5 class="time" >Update Lecture Time Table</h5>
 <hr>
-<div class="row">
-  <div class="col-2">
-  <div class="time">
-    <label for="time">Lecture starting time :</label>
-    <ngb-timepicker [(ngModel)]="time" [meridian]="true" id="time"></ngb-timepicker>
-    <button class="btn btn-sm btn-success"  aria-describedby="selectTimeHelp">
-        Time selected - {{time.hour}} : {{time.minute}}
-    </button>
-  </div>
- </div>
- <div class="col-2">
-    <div class="time">
-      <label for="time">Lecture ending time :</label>
-      <ngb-timepicker [(ngModel)]="time" [meridian]="true" id="time"></ngb-timepicker>
-      <button class="btn btn-sm btn-success"  aria-describedby="selectTimeHelp">
-          Time selected - {{time.hour}} : {{time.minute}}
-      </button>
-      
-    </div>
-   </div>
-</div>
 <p><small id="selectTimeHelp" class="form-text text-muted">You Should select the time to update lecture Schedule.</small></p>
 
 <div class="row">
   <div class="col">
       <form [formGroup]="timetableForm" (ngSubmit)="onSubmit()">
+          <div class="form-group" style="width: 50%;">
+              <label for="Startingtime">Lecture Starting Time</label>
+              <input type="time" class="form-control" id="Startingtime" formControlName="startingtime">
+            </div>
+            <div class="form-group" style="width: 50%;">
+                <label for="Endingtime">Lecture Ending Time</label>
+                <input type="time" class="form-control" id="Endingtime" formControlName="endingtime">
+              </div>
+              <hr>
           <div class="form-group" >
             <label for="subject">Subject Code</label>
             <input type="text" class="form-control" id="subject" formControlName="subjectCode" [ngClass]="{'is-invalid': subjectCode.touched && subjectCode.invalid}" placeholder="Enter Subject Code">
@@ -33,6 +21,23 @@
                 Subject Code is required.
               </div>
           </div>
+          <div class="form-group">
+            <label for="stream">Academic Section</label>
+            <div class="input-group mb-3">
+                <select class="custom-select" id="stream" formControlName="stream" [ngClass]="{'is-invalid': stream.touched && stream.invalid}">
+                  <option value="IS">Information Systems</option>
+                  <option value="CS">Computer Science</option>
+                </select>
+                <div class="input-group-append">
+                  <label class="input-group-text" for="stream">stream</label>
+                </div>
+                <div *ngIf="stream.touched && stream.invalid" class="invalid-feedback">
+                   Select whether Computer Science or Information Systems.
+                  </div>
+              </div>
+              
+          </div>
+
           <div class="form-group">
               <label for="year">Academic Year</label>
               <div class="input-group mb-3">

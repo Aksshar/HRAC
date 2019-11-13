@@ -1,8 +1,9 @@
+import { AttendanceService } from './../attendance.service';
 import { DateService } from './../date.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore'; 
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct,NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Dates } from './dates';
 
 @Component({
@@ -14,8 +15,7 @@ export class CurrentsemesterComponent implements OnInit {
   Dates: any;
   timetableForm: FormGroup;
   list: Dates[];
-  constructor(private db:AngularFirestore, private fb:FormBuilder, private dateservice: DateService) { }
-  time = { hour: 13, minute: 30 };
+  constructor(private db:AngularFirestore, private fb:FormBuilder, private dateservice: DateService, private attendance:AttendanceService) { }
   model: NgbDateStruct;
   
   selectDates() {
@@ -23,17 +23,15 @@ export class CurrentsemesterComponent implements OnInit {
     });
   }
 
-
-  toggleMeridian(time) {
-    this.time = time;
-    console.log(time);
-  }
   ngOnInit() {
     this.timetableForm = this.fb.group({
       subjectCode: ['', [Validators.required]],
       academicYear: ['', [Validators.required]],
+      stream: ['',[Validators.required]],
       lectureHall: ['', [Validators.required]],
-      lecturer: ['',[Validators.required]]
+      lecturer: ['', [Validators.required]],
+      startingtime: [''],
+      endingtime: ['']
     });
     
 
@@ -69,13 +67,28 @@ export class CurrentsemesterComponent implements OnInit {
     return this.timetableForm.get('lectureHall');
   }
 
+  get stream() {
+    return this.timetableForm.get('stream');
+  }
   get lecturer() {
     return this.timetableForm.get('lecturer');
   }
 
-  onSubmit(){
+  onSubmit() {
+    if (this.timetableForm.invalid) {
+      return;
+  }
+  else {
+    const subjectCode = this.timetableForm.value.subjectCode;
+    const academicYear = this.timetableForm.value.academicYear;
+    const lectureHall = this.timetableForm.value.lectureHall;
+    const lecturer = this.timetableForm.value.lecturer;   
+    const startingtime = this.timetableForm.value.startingtime;
+    const endingtime = this.timetableForm.value.endingtime;
+    this.attendance.insertTimeTable(subjectCode, academicYear, lectureHall, lecturer, this.list, startingtime, endingtime);
+    for (let del of this.list) this.db.collection('Dates').doc(del.id).delete(); 
+    this.timetableForm.reset();  
+  }
   }
 
 }
-
-
