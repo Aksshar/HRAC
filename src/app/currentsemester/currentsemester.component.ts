@@ -85,8 +85,10 @@ export class CurrentsemesterComponent implements OnInit {
     const lecturer = this.timetableForm.value.lecturer;   
     const startingtime = this.timetableForm.value.startingtime;
     const endingtime = this.timetableForm.value.endingtime;
-    this.attendance.insertTimeTable(subjectCode, academicYear, lectureHall, lecturer, this.list, startingtime, endingtime);
-    for (let del of this.list) this.db.collection('Dates').doc(del.id).delete(); 
+    const stream = this.timetableForm.value.stream;  
+    this.attendance.insertTimeTable(subjectCode, academicYear, lectureHall, lecturer, this.list, startingtime, endingtime,stream);
+      for (let del of this.list) this.db.collection('Dates').doc(del.id).delete(); 
+      this.attendance.generateStudents(subjectCode, academicYear, this.list,stream);
     this.timetableForm.reset();  
   }
   }
