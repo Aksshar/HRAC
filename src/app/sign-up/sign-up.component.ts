@@ -46,7 +46,8 @@ export class SignUpComponent implements OnInit {
     else {
       const email = this.signupForm.value.email;
       const password = this.signupForm.value.password;
-      this.auth.Register(email, password);
+      const IndexNumber = this.signupForm.value.IndexNumber;
+      this.auth.Register(email, password,IndexNumber);
     }
 }
 }

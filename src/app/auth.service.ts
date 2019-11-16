@@ -20,12 +20,13 @@ export class AuthService {
     this.user$ = afAuth.authState;
   }
   
-  async Register(email: string, password: string) {
+  async Register(email: string, password: string, IndexNumber) {
     try{
         let userCred = await this.afAuth.auth.createUserWithEmailAndPassword(email, password)
         await this.afs.firestore.collection("user").doc(userCred.user.uid).set({
             email: email,
-            password: password
+            password: password,
+            IndexNumber: IndexNumber
         });
             this.router.navigate(['/']);
     } catch (e) {
