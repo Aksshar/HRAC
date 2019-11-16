@@ -20,7 +20,8 @@ export class AttendanceComponent implements OnInit {
   IndexNumber;
   year;
   stream;
-  
+  subjectCodes;
+  final;
   constructor(private db: AngularFirestore, public authService: AuthService, private afAuth: AngularFireAuth,private UserAf:UserAttendanceService) {
     afAuth.authState.subscribe(user => this.user = user);
    }
@@ -40,6 +41,15 @@ export class AttendanceComponent implements OnInit {
         }
         console.log(this.year);
         console.log(this.stream);
+        this.db.collection('Timetable', ref => ref.where('academicYear', '==', this.year).where('stream', '==', this.stream)).valueChanges().subscribe(val => {
+          this.subjectCodes = val;
+          for (let subject of this.subjectCodes) {
+            this.db.collection(subject.subjectCode).valueChanges().subscribe(val => {
+              this.final = val;
+              console.log(this.final);
+            });
+          }
+        });
       });
     });
     

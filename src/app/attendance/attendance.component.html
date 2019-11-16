@@ -6,7 +6,12 @@
     <div class="label"><p class="md-17" style="width: 300px;text-align: left;">Student Name : RAMESH AKSSHAR</p></div>
         <div class="label"><p class="md-17" style="width: 300px;text-align: left;">Computer Science</p></div>
       
-           
+           <div *ngFor="let subject of subjectCodes">
+               <h1>{{subject.subjectCode}}</h1>
+               <div *ngFor="let date of final">
+                   <h3 *ngIf="date.IndexNumber == IndexNumber">{{date.date}}</h3>
+               </div>
+           </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed numquam expedita eum, unde veniam fugit? Reiciendis voluptates unde laborum reprehenderit, voluptatem deserunt necessitatibus quibusdam non, magnam expedita, modi dolorem blanditiis!</p>
                 <p>
                     <a class="btn btn-primary" href="#" role="button">Contact for help &raquo;</a>
