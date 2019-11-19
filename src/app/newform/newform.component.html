@@ -1,0 +1,47 @@
+<div class="card">
+        <div class="card-body">
+              
+            <form [formGroup]="hallForm" (submit)="onSubmit(hallForm.value)">
+                   <div class="photo">
+                    <img [src]="imgSrc" width="320px" height="220px" (click)="fileUploader.click()" >
+                     
+                   </div> 
+                  
+                   <div class="form-group">
+                    <label >Select file to upload</label>
+                     <input type="file"  class="form-control"  #fileUploader formcontrolname="imageurl" (change)="showPreview($event)">
+                     
+                   </div>
+          
+                   <div class="form-group">
+                    <label >Hall Name</label>
+                    <input type="text" class="form-control" formcontrolname="name"  placeholder="Name"  >
+                   </div>
+          
+                   <div class="form-group">
+                      <label >Hall Type</label>
+                      <select class="form-control" formcontrolname="type" placeholder="Type">
+                        <option value ="LectureHall"> Lecture Hall </option>
+                        <option value ="Auditorium"> Auditorium </option>
+                        <option value ="MeetingRoom"> Meeting Room </option>
+                      </select>
+                   </div>
+          
+                   <div class="form-group">
+                      <label>Number of Seats</label>
+                      <input type="text" class="form-control" formcontrolname="seats" placeholder="No.of Seats" >
+                   </div>
+                                  
+                                
+                    <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Add</button>
+                    
+                         
+                           
+            </form> 
+            <div class="alert alert-info" *ngIf="showSuccessMessage">
+                        Submitted Successfully.
+                    </div>
+        </div>
+    </div>
+          
+          
