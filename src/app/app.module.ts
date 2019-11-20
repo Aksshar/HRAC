@@ -31,6 +31,8 @@ import { ManageBookingComponent } from './manage-booking/manage-booking.componen
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { ManageHallsComponent } from './manage-halls/manage-halls.component';
 import { CurrentsemesterComponent } from './currentsemester/currentsemester.component';
+import { AddNewHallComponent } from './add-new-hall/add-new-hall.component';
+import { NewBookingComponent } from './new-booking/new-booking.component';
 
 
 
@@ -49,7 +51,9 @@ import { CurrentsemesterComponent } from './currentsemester/currentsemester.comp
     ManageBookingComponent,
     DashboardAdminComponent,
     ManageHallsComponent,
-    CurrentsemesterComponent
+    CurrentsemesterComponent,
+    AddNewHallComponent,
+    NewBookingComponent
  
   ],
   imports: [
