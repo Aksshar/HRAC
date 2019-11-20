@@ -1,11 +1,20 @@
+import { UserAttendanceService } from './user-attendance.service';
+import { DateService } from './date.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { environment } from './../environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { RouterModule,Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { ManageUserService } from './manage-user.service';
+import { ManageHallsService } from './manage-halls.service';
+import { AuthService } from './auth.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,11 +24,13 @@ import { SigninComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AttendanceComponent } from './attendance/attendance.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { ManageHallsComponent } from './manage-halls/manage-halls.component';
+import { CurrentsemesterComponent } from './currentsemester/currentsemester.component';
 
 
 
@@ -36,7 +47,9 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
     DashboardComponent,
     ManageUsersComponent,
     ManageBookingComponent,
-    DashboardAdminComponent
+    DashboardAdminComponent,
+    ManageHallsComponent,
+    CurrentsemesterComponent
  
   ],
   imports: [
@@ -53,6 +66,8 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
           { path: 'dashboard-admin', component: DashboardAdminComponent},
           { path: 'manage-users', component: ManageUsersComponent },
           { path: 'manage-booking', component: ManageBookingComponent },
+          { path: 'manage-halls', component: ManageHallsComponent },
+          { path: 'currentsemester', component: CurrentsemesterComponent },
           
         ]
       }
@@ -61,8 +76,20 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
     FormsModule,
     AppRoutingModule,
     NgbModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({ timeOut: 6000, positionClass: 'toast-top-center', preventDuplicates: false }),
   ],
-  providers: [AngularFirestore],
+  providers: [
+    AngularFirestore,
+    ManageUserService,
+    ManageHallsService,
+    AngularFireDatabase,
+    AuthService,
+    AngularFireAuth,
+    DateService,
+    UserAttendanceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,24 +8,28 @@
                     <div class="card card-signin my-5">
                       <div class="card-body">
                         <h5 class="card-title text-center">Sign In</h5>
-                        <form class="form-signin">
+                        <form class="form-signin" [formGroup]="signinForm" (ngSubmit)="onSubmit()">
                           <div class="form-label-group">
                             <label for="inputEmail">Email address</label>
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                            
+                            <input type="email" id="inputEmail" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Email address" required autofocus> 
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            </div>
                           </div>
             
                           <div class="form-label-group">
                             <label for="inputPassword">Password</label>
-                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                            <input type="password" id="inputPassword" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" required>
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                            </div>
                           </div>
             
                           <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">Remember password</label>
                             <span class="forgot"><a href="#">Forgot password?</a></span>
                           </div>
-                          <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Sign in</button>
+                          <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit" >Sign in</button>
                           <p class="new">New to HRAC? <a href="#">Create an account.</a></p>
                         </form>
                       </div>
