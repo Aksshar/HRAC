@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { environment } from './../environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { RouterModule,Routes } from '@angular/router';
@@ -33,6 +34,12 @@ import { ManageHallsComponent } from './manage-halls/manage-halls.component';
 import { CurrentsemesterComponent } from './currentsemester/currentsemester.component';
 import { AddNewHallComponent } from './add-new-hall/add-new-hall.component';
 import { NewBookingComponent } from './new-booking/new-booking.component';
+import { NewhallComponent } from './newhall/newhall.component';
+import { HallsComponent } from './halls/halls.component';
+import { MyBookingComponent } from './my-booking/my-booking.component';
+
+
+
 
 
 
@@ -53,7 +60,10 @@ import { NewBookingComponent } from './new-booking/new-booking.component';
     ManageHallsComponent,
     CurrentsemesterComponent,
     AddNewHallComponent,
-    NewBookingComponent
+    NewBookingComponent,
+    NewhallComponent,
+    HallsComponent,
+    MyBookingComponent
  
   ],
   imports: [
@@ -64,6 +74,11 @@ import { NewBookingComponent } from './new-booking/new-booking.component';
       { path: 'SignIn', component: SigninComponent },
       { path: 'SignUp', component: SignUpComponent },
       { path: 'Attendance', component: AttendanceComponent },
+      { path: 'Newhall', component: NewhallComponent },
+      { path: 'Halls', component: HallsComponent },
+      { path: 'Bookingform', component: NewBookingComponent },
+      { path: 'Addnewhall', component: AddNewHallComponent },
+      { path: 'Mybooking', component: MyBookingComponent },
       {
         path: 'Dashboard', component: DashboardComponent,
         children: [
@@ -79,6 +94,7 @@ import { NewBookingComponent } from './new-booking/new-booking.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    AngularFireStorageModule ,
     NgbModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

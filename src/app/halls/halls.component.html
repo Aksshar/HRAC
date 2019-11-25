@@ -1,0 +1,30 @@
+<table *ngIf="imagelist">
+    <tr *ngFor="let i of rowIndexArray">
+        <td>
+            <div class="imagebox">
+                <a routerLink="/Bookingform">
+                    <img [src]=  "imageList[3*i].imageUrl"  class="img-fluid">
+                    <span class="imagebox-desc">{{imageList[3*i].name</span>
+                </a>
+            </div>
+        </td>
+        <td>
+            <div class="imagebox">
+                <a routerLink="/Bookingform">
+                    <img [src]=  "imageList[3*i+1].imageUrl"  class="img-fluid">
+                    <span class="imagebox-desc">{{imageList[3*i+1].name</span>
+                </a>
+            </div>
+        </td>
+        <td>
+            <div class="imagebox">
+                <a routerLink="/Bookingform">
+                    <img [src]=  "imageList[3*i+2].imageUrl"  class="img-fluid">
+                    <span class="imagebox-desc">{{imageList[3*i+2].name</span>
+                </a>
+            </div>
+        </td>
+       
+    </tr>
+</table>
+

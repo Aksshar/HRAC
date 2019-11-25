@@ -1,1 +1,34 @@
+<div class="card" style="width:25rem">
+    <div class="card-body">
+        <form  [formGroup]="AddHallform" (submit)="onSubmit(AddHallform.value)">
+            <div class="image">
+                <img [src]="imgSrc" width="350px" height="200px" (click)= fileUploader.click()>
+            </div>
+            <div class="form-group">
+                <label>Select file to upload</label>
+                <input type="file" class="form-control" #fileUploader formControlName="imageurl" (change)="ShowPreview($event)">
+            </div>
+            <div class="form-group">
+                <input  class="form-control" formControlName="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <input  class="form-control" formControlName="seats" placeholder="Seats">
+            </div>
+            <div class="form-group">
+                <select  class="form-control" formControlName="type" >
+                    <option>Lecture Hall</option>
+                    <option>Auditorium</option>
+                    <option>Meeting Room</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input  class="form-control" formControlName="location" placeholder="Location">
+            </div>
+            <div class="form-group">
+                <button  class="btn btn-success" type="submit">submit</button>
+            </div>
 
+        </form>
+    </div>
+</div>
+ 
