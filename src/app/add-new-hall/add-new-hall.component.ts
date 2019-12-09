@@ -42,6 +42,7 @@ export class AddNewHallComponent implements OnInit {
   }
 
   onSubmit(formValue){
+    
     this.isSubmitted= true;
     if(this.AddHallform.valid){
       var filePath = "${formvalue.type}/${this.selectedimage.name}_${new Date().getTime()}";
@@ -49,13 +50,14 @@ export class AddNewHallComponent implements OnInit {
       this.storage.upload(filePath,this.selectedimage).snapshotChanges().pipe(
         finalize(()=>{
           fileRef.getDownloadURL().subscribe((url)=>{
-            formValue['imageurl']=url;
-            this.service.insertImageDetails(formValue);
+            console.log(url)
+            //formValue['imageurl']=url;
+            // this.service.insertImageDetails(formValue);
              
-            this.resetForm();
+            //this.resetForm();
           })
         })
-      ).subscribe(); 
+      )
 
     }
   }
