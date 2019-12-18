@@ -41,84 +41,74 @@
                 </div>    Checking availability of {{ RFIDNumber.value }}
             </div>
           </div>
+
+          <div class="form-group">
+            <label for="stream">Academic Section</label>
+            <div class="input-group mb-3" style="width:50%;">
+                <select class="custom-select" id="stream"  formControlName="stream" [ngClass]="{'is-invalid': stream.touched && stream.invalid}">
+                  <option value="IS">Information Systems</option>
+                  <option value="CS">Computer Science</option>
+                </select>
+                <div class="input-group-append">
+                  <label class="input-group-text" for="stream">stream</label>
+                </div>
+                <div *ngIf="stream.touched && stream.invalid" class="invalid-feedback">
+                   Select whether Computer Science or Information Systems.
+                  </div>
+              </div>
+          </div>
+
+          <div class="form-group">
+            <label for="year">Academic Year</label>
+            <div class="input-group mb-3" style="width:50%;">
+                <select class="custom-select" id="year" formControlName="academicYear" style="width:50%;" [ngClass]="{'is-invalid': academicYear.touched && academicYear.invalid}">
+                  <option value="1">1st Year</option>
+                  <option value="2">2nd Year</option>
+                  <option value="3">3rd Year</option>
+                  <option value="3">4th Year</option>
+                </select>
+                <div class="input-group-append">
+                  <label class="input-group-text" for="year">Year</label>
+                </div>
+                <div *ngIf="academicYear.touched && academicYear.invalid" class="invalid-feedback">
+                    Academic Year is required.
+                  </div>
+              </div>
+              
+          </div>
         
         <button type="submit" class="btn btn-primary" (click)="onSubmit()">Insert Student</button>
       </form>    
       <p>
             
-            <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th scope="col">Id count</th>
-                        <th scope="col">Index Number</th>
-                        <th scope="col">RFID Number</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>17000025</td>
-                        <td>1245346787</td>
-                        <td><button type="button" class="btn btn-sm btn-danger">Delete</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>17000041</td>
-                        <td>8967456788</td>
-                        <td><button type="button" class="btn btn-sm btn-danger">Delete</button></td>
-                      </tr>
-                      <tr>
-                            <th scope="row">3</th>
-                            <td>17020883</td>
-                            <td>1245206787</td>
-                            <td><button type="button" class="btn btn-sm btn-danger">Delete</button></td>
-                          </tr>
-                      
-                    </tbody>
-                  </table>
+    <table class="table table-hover">
+      <thead>
+        <th>IndexNumber</th>
+        <th>RFIDNumber</th>
+        <th>Stream</th>
+        <th>Year</th>
+        <th></th>
+      </thead>
+      <tbody>
+          <tr *ngFor="let order of list">
+            <td>
+              {{ order.payload.doc.data().IndexNumber }}
+            </td>
+            <td>{{ order.payload.doc.data().RFIDNumber }}</td>
+            <td>{{ order.payload.doc.data().stream }}</td>
+            <td>{{ order.payload.doc.data().academicYear }}</td>
+            <td
+              
+              (click)="deleteUser(order)"
+            >
+            <div class="btn-remove">
+                Remove
+            </div>
+            </td>
+          </tr>
+        </tbody>
+    </table>
 
-                  <p><h5 class="card-title">Registered Users</h5>
-                  <p>
-                        <table class="table table-hover">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">Index Number</th>
-                                    <th scope="col">RFID Number</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>17000025</td>
-                                    <td>1245346787</td>
-                                    <td>Benura Abayawardnana</td>
-                                    <td>bena23@gmail.com</td>
-                                    <td><button type="button" class="btn btn-sm btn-success">Edit</button></td>
-                                    <td><button type="button" class="btn btn-sm btn-danger">Delete</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>17000041</td>
-                                    <td>8967456788</td>
-                                    <td>Ramesh Aksshar</td>
-                                    <td>akssharramesh001@gmail.com</td>
-                                    <td><button type="button" class="btn btn-sm btn-success">Edit</button></td>
-                                    <td><button type="button" class="btn btn-sm btn-danger">Delete</button></td>
-                                  </tr>
-                                  <tr>
-                                        <td>17020883</td>
-                                        <td>1245206787</td>
-                                        <td>Thushanthy Walter</td>
-                                        <td>thushywlater@gmail.com</td>
-                                        <td><button type="button" class="btn btn-sm btn-success">Edit</button></td>
-                                        <td><button type="button" class="btn btn-sm btn-danger">Delete</button></td>
-                                      </tr>
-                                  
-                                </tbody>
-                              </table>
-                 
-      
-
-    </div>
+</div>
 
     

@@ -25,7 +25,17 @@ export class ManageHallsComponent implements OnInit {
         Validators.required,
       ],],
     });
+    this.getHalls();
   }
+
+  list;
+
+  getHalls = () =>
+    this.managehalls
+      .getHalls()
+      .subscribe(res => (this.list = res));
+
+  deleteHalls = data => this.managehalls.deleteHalls(data);
 
   get HallNumber() {
     return this.HallsForm.get('HallNumber')

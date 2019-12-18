@@ -16,4 +16,27 @@ export class ManageHallsService {
     console.error("Error adding document: ", error);
 });
   }
+
+
+
+  updateHalls(data) {
+    return this.afs
+      .collection("Halls")
+      .doc(data.payload.doc.id)
+      .set({ completed: true }, { merge: true });
+  }
+
+
+  deleteHalls(data) {
+    return this.afs
+      .collection("Halls")
+      .doc(data.payload.doc.id)
+      .delete();
+  }
+
+  getHalls() {
+    return this.afs.collection("Halls").snapshotChanges();
+  }
+
+
 }

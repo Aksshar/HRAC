@@ -1,3 +1,5 @@
+import { ManageAccessService } from './manage-access.service';
+import { UserManagementService } from './user-management.service';
 import { UserAttendanceService } from './user-attendance.service';
 import { DateService } from './date.service';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -31,6 +33,10 @@ import { ManageBookingComponent } from './manage-booking/manage-booking.componen
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { ManageHallsComponent } from './manage-halls/manage-halls.component';
 import { CurrentsemesterComponent } from './currentsemester/currentsemester.component';
+import { ManageAccessComponent } from './manage-access/manage-access.component';
+import { CalenderComponent } from './components/calender/calender.component';
+import { ScheduleModule, RecurrenceEditorModule, DayService, MonthService, WeekService } from '@syncfusion/ej2-angular-schedule';
+import { HallReservationComponent } from './hall-reservation/hall-reservation.component';
 
 
 
@@ -49,7 +55,10 @@ import { CurrentsemesterComponent } from './currentsemester/currentsemester.comp
     ManageBookingComponent,
     DashboardAdminComponent,
     ManageHallsComponent,
-    CurrentsemesterComponent
+    CurrentsemesterComponent,
+    ManageAccessComponent,
+    CalenderComponent,
+    HallReservationComponent
  
   ],
   imports: [
@@ -60,6 +69,7 @@ import { CurrentsemesterComponent } from './currentsemester/currentsemester.comp
       { path: 'SignIn', component: SigninComponent },
       { path: 'SignUp', component: SignUpComponent },
       { path: 'Attendance', component: AttendanceComponent },
+      { path: 'HallReservation', component: HallReservationComponent},
       {
         path: 'Dashboard', component: DashboardComponent,
         children: [
@@ -68,6 +78,7 @@ import { CurrentsemesterComponent } from './currentsemester/currentsemester.comp
           { path: 'manage-booking', component: ManageBookingComponent },
           { path: 'manage-halls', component: ManageHallsComponent },
           { path: 'currentsemester', component: CurrentsemesterComponent },
+          { path: 'manage-access', component: ManageAccessComponent}
           
         ]
       }
@@ -79,6 +90,7 @@ import { CurrentsemesterComponent } from './currentsemester/currentsemester.comp
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({ timeOut: 6000, positionClass: 'toast-top-center', preventDuplicates: false }),
+    ScheduleModule, RecurrenceEditorModule,
   ],
   providers: [
     AngularFirestore,
@@ -88,7 +100,12 @@ import { CurrentsemesterComponent } from './currentsemester/currentsemester.comp
     AuthService,
     AngularFireAuth,
     DateService,
-    UserAttendanceService
+    UserAttendanceService,
+    UserManagementService,
+    ManageAccessService,
+    DayService,
+    WeekService,
+    MonthService
   ],
   bootstrap: [AppComponent]
 })

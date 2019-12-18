@@ -4,8 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "HRAC": {
-      "projectType": "application", 
-      
+      "projectType": "application",
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
@@ -25,8 +24,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
-
+              "src/styles.css",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
             ],
             "scripts": []
           },
@@ -86,7 +85,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
             ],
             "scripts": []
           }
@@ -117,6 +117,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "HRAC"
 }

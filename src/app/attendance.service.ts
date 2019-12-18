@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { generate } from 'rxjs';
@@ -7,7 +8,7 @@ import { generate } from 'rxjs';
 })
 export class AttendanceService {
 
-  constructor(private db:AngularFirestore) { }
+  constructor(private db:AngularFirestore,private toastr: ToastrService) { }
 
   insertTimeTable(subjectCode, academicYear, lectureHall, lecturer, list, startingtime, endingtime,stream) {
     return this.db.collection("Timetable").add({
@@ -42,6 +43,7 @@ export class AttendanceService {
             IndexNumber: index.IndexNumber,
             isAttended: false
           });
+          
         }
         
       } 

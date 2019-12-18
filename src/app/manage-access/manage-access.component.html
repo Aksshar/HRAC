@@ -1,0 +1,96 @@
+
+
+ 
+    <div class="card-body">
+            <h5 class="card-title">Access Management</h5>
+            <p class="card-text">Provide Access to the Users by adding their index Numbers, RFID tag Numbers  and Hall.</p> 
+            <form [formGroup]="AccessForm">
+              <div class="form-group">
+                <label for="IndexNumber">User Index Number</label>
+                <input type="text" class="form-control" formControlName="IndexNumber" id="IndexNumber" style="width:50%;" [ngClass]="{ 'is-invalid': (IndexNumber.touched && IndexNumber.invalid) || (IndexNumber.value && IndexNumber.invalid) }" placeholder="Index Number (eg:1700XXXX).">
+               <div *ngIf="IndexNumber.value && IndexNumber.dirty" class="invalid-feedback">
+        {{ IndexNumber.value }} is not valid
+      </div>
+      
+      <div *ngIf="!IndexNumber.value" class="invalid-feedback">
+                    Index Number is required
+        </div>
+      
+      <div *ngIf="IndexNumber.pending" class="notification is-info">
+         <div class="spinner-border spinner-border-sm text-success" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>    Checking availability of {{ IndexNumber.value }}
+      </div>
+              </div>
+              
+              
+              <div class="form-group">
+                  <label for="RFIDNumber">RFID card Number</label>
+                  <input type="text" class="form-control" formControlName="RFIDNumber" id="RFIDNumber" style="width:50%;" [ngClass]="{ 'is-invalid': (RFIDNumber.touched && RFIDNumber.invalid) || (RFIDNumber.value && RFIDNumber.invalid) }" placeholder="Enter RFID Number">
+                  <div *ngIf="!RFIDNumber.value" class="invalid-feedback">
+                    RFID Number is required
+                  </div>
+      
+                  <div *ngIf="RFIDNumber.value && RFIDNumber.dirty" class="invalid-feedback">
+                  {{ RFIDNumber.value }} is not valid
+                  </div>
+      
+                  <div *ngIf="RFIDNumber.pending" class="notification is-info">
+                  <div class="spinner-border spinner-border-sm text-success" role="status">
+                      <span class="sr-only">Loading...</span>
+                      </div>    Checking availability of {{ RFIDNumber.value }}
+                  </div>
+                </div>
+
+
+
+                <div class="form-group">
+                        <label for="HallNumber">Hall Number</label>
+                        <input type="text" class="form-control" formControlName="HallNumber" id="HallNumber" style="width:50%;" [ngClass]="{ 'is-invalid': (HallNumber.touched && HallNumber.invalid) || (HallNumber.value && HallNumber.invalid) }" placeholder="Enter Hall Number">
+                        <div *ngIf="!HallNumber.value" class="invalid-feedback">
+                            Hall Number is required
+                        </div>
+            
+                        <div *ngIf="HallNumber.value && HallNumber.dirty" class="invalid-feedback">
+                        {{ HallNumber.value }} is not valid
+                        </div>
+            
+                        <div *ngIf="HallNumber.pending" class="notification is-info">
+                        <div class="spinner-border spinner-border-sm text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                            </div>    Checking availability of {{ HallNumber.value }}
+                        </div>
+                      </div>
+              
+              <button type="submit" class="btn btn-primary" (click)="onSubmit()">Provide Access</button>
+            </form>    
+            <p>
+
+                    <table class="table table-hover">
+                            <thead>
+                              <th>IndexNumber</th>
+                              <th>RFIDNumber</th>
+                              <th>HallNumber</th>
+                              <th></th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let order of list">
+                                  <td>
+                                    {{ order.payload.doc.data().IndexNumber }}
+                                  </td>
+                                  <td>{{ order.payload.doc.data().RFIDNumber }}</td>
+                                  <td>{{ order.payload.doc.data().HallNumber }}</td>
+                                  <td
+                                    
+                                    (click)="deleteUser(order)"
+                                  >
+                                  <div class="btn-remove">
+                                      Remove
+                                  </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                          </table>
+ </div>
+      
+          

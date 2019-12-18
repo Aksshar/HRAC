@@ -35,114 +35,17 @@
       </form>    
 <div class="row">
 
-<div class="halls">
+<div class="halls" *ngFor="let order of list">
   <div class="jumbotron">
-  <h1 class="display-8">WOO1</h1>
-  <p class="lead">Seating Capacity : </p>
+  <h1 class="display-8"> {{ order.payload.doc.data().HallNumber }}</h1>
+  <p class="lead">Seating Capacity : {{ order.payload.doc.data().Capacity }} </p>
   <p><strong>Available</strong></p>
   <hr class="my-4">
-<button type="button" class="btn btn-sm btn-danger">Delete</button>
+<button type="button" class="btn btn-sm btn-danger"  (click)="deleteHalls(order)">Delete</button>
 <button type="button" class="btn btn-sm btn-warning">Not Available</button>
 </div>
 </div>
 
-
-
-<div class="halls">
-  <div class="jumbotron">
-  <h1 class="display-8">WOO2</h1>
-  <p class="lead">Seating Capacity : </p>
-  <p><strong>Available</strong></p>
-  <hr class="my-4">
-<button type="button" class="btn btn-sm btn-danger">Delete</button>
-<button type="button" class="btn btn-sm btn-warning">Not Available</button>
-</div>
-</div>
-
-
-
-
-
-<div class="halls">
-  <div class="jumbotron">
-  <h1 class="display-8">S203</h1>
-  <p class="lead">Seating Capacity : </p>
-  <p><strong>Available</strong></p>
-  <hr class="my-4">
-<button type="button" class="btn btn-sm btn-danger">Delete</button>
-<button type="button" class="btn btn-sm btn-warning">Not Available</button>
-</div>
-</div>
-
-
-
-
-<div class="halls">
-  <div class="jumbotron">
-  <h1 class="display-8">S104</h1>
-  <p class="lead">Seating Capacity : </p>
-  <p><strong>Available</strong></p>
-  <hr class="my-4">
-<button type="button" class="btn btn-sm btn-danger">Delete</button>
-<button type="button" class="btn btn-sm btn-warning">Not Available</button>
-</div>
-</div>
-
-
-
-
-<div class="halls">
-  <div class="jumbotron">
-  <h1 class="display-8">E401</h1>
-  <p class="lead">Seating Capacity : </p>
-  <p><strong>Available</strong></p>
-  <hr class="my-4">
-<button type="button" class="btn btn-sm btn-danger">Delete</button>
-<button type="button" class="btn btn-sm btn-warning">Not Available</button>
-</div>
-</div>
-
-
-
-
-<div class="halls">
-  <div class="jumbotron">
-  <h1 class="display-8">E205</h1>
-  <p class="lead">Seating Capacity : </p>
-  <p><strong>Available</strong></p>
-  <hr class="my-4">
-<button type="button" class="btn btn-sm btn-danger">Delete</button>
-<button type="button" class="btn btn-sm btn-warning">Not Available</button>
-</div>
-</div>
-
-
-
-
-<div class="halls">
-  <div class="jumbotron">
-  <h1 class="display-8">S102</h1>
-  <p class="lead">Seating Capacity : </p>
-  <p><strong>Available</strong></p>
-  <hr class="my-4">
-<button type="button" class="btn btn-sm btn-danger">Delete</button>
-<button type="button" class="btn btn-sm btn-warning">Not Available</button>
-</div>
-</div>
-
-
-
-
-<div class="halls">
-  <div class="jumbotron">
-  <h1 class="display-8">S103</h1>
-  <p class="lead">Seating Capacity : </p>
-  <p><strong>Available</strong></p>
-  <hr class="my-4">
-<button type="button" class="btn btn-sm btn-danger">Delete</button>
-<button type="button" class="btn btn-sm btn-warning">Not Available</button>
-</div>
-</div>
  
 </div>
  </div>

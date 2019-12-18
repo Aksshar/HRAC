@@ -2,16 +2,63 @@
     <h5>Student Attendance</h5>
     <div class="card">
 <div class="card-main">
-    <div class="label"> <p class="md-17" style="width: 300px;text-align: left;">Registration Number : 2017CS004</p></div>
-    <div class="label"><p class="md-17" style="width: 300px;text-align: left;">Student Name : RAMESH AKSSHAR</p></div>
-        <div class="label"><p class="md-17" style="width: 300px;text-align: left;">Computer Science</p></div>
-      
-           <div *ngFor="let subject of subjectCodes">
-               <h1>{{subject.subjectCode}}</h1>
-               <div *ngFor="let date of final">
-                   <h3 *ngIf="date.IndexNumber == IndexNumber">{{date.date}}</h3>
-               </div>
-           </div>
+    <div class="label"> <p class="md-17" style="width: 300px;text-align: left;">Index Number : {{IndexNumber}}</p></div>
+        <div class="label">
+            <p class="md-17" *ngIf="stream === 'CS'" style="width: 300px;text-align: left;">Stream : Computer Science</p>
+            <p class="md-17" *ngIf="stream === 'IS'" style="width: 300px;text-align: left;">Stream : Information Systems</p>
+        </div>
+    
+            <div class="card">
+                    <div class="card-body" >
+                      <h5 class="card-title">Your Current semester subjects</h5>
+                      <p class="card-text"><strong>Click on</strong> the Subjects to view <strong>lecture attended dates</strong> and <strong>attendance percentage</strong></p>
+                      <div class="row" style="margin: 10px;">
+                            <ng-container *ngFor="let subject of subjectCodes; let i = index" style="padding: 10px;">
+                                    <div class="col" style="margin-top: 10px;">
+                                        <div style="width: 200px;">
+                                            <div class="subject_code"  (click)="getDates(subject.subjectCode,IndexNumber)">{{subject.subjectCode}}</div>
+                                        </div>
+                                        </div>
+                                        <div *ngIf="(i + 1) % 4 === 0" class="w-100"></div>
+                            </ng-container>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="card" >
+                        <div class="card-body">
+                          <div class="row" style="margin: 10px;">
+                                <ng-container *ngFor="let date of final;">
+                                        <div class="col-md-2" *ngIf="date.indexNumber === IndexNumber" style="margin-left: 10px;width: 200px;">
+                                            <div class="attended alert alert-success" *ngIf="date.attended" style="width: 250px;text-align: center;margin: 10px;">
+                                                <h6>{{date.date}}</h6>
+                                                <h6>Attended</h6>
+                                            </div> 
+                                              
+                                            </div>
+                                </ng-container>
+                            </div>
+                            <p class="card-text" *ngIf="at_count"><strong>Attendance percentage : </strong></p>
+                            <div class="row">
+                                    <div class="col-md-2">
+                                            <div class="progress green" *ngIf="at_count">
+                                                    <span class="progress-left">
+                                                        <span class="progress-bar"></span>
+                                                    </span>
+                                                    <span class="progress-right">
+                                                        <span class="progress-bar"></span>
+                                                    </span>
+                                                    <div class="progress-value">{{at_count * 100/total_count}}%</div>
+                                            </div>
+                                    </div>
+                                    <div class="col">
+                                        
+                                    </div>
+                                </div>
+                        </div>
+                      </div>
+
+
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed numquam expedita eum, unde veniam fugit? Reiciendis voluptates unde laborum reprehenderit, voluptatem deserunt necessitatibus quibusdam non, magnam expedita, modi dolorem blanditiis!</p>
                 <p>
                     <a class="btn btn-primary" href="#" role="button">Contact for help &raquo;</a>
@@ -19,3 +66,8 @@
                 </div>
     </div>
 </div>
+
+
+<div >
+        
+    </div>

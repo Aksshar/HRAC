@@ -1,3 +1,5 @@
+import { UserManagementService } from './../user-management.service';
+import { UserModel } from './userModel';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore} from 'angularfire2/firestore';
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
@@ -13,8 +15,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ManageUsersComponent implements OnInit {
   
+  submitted: boolean;
+  showSuccessMessage: boolean;
+
   IndexForm: FormGroup;
-  constructor(private afs: AngularFirestore, private fb: FormBuilder,private manageuser: ManageUserService, private router: Router, private toastr: ToastrService){}
+  
+  constructor(private afs: AngularFirestore, private fb: FormBuilder,private manageuser: ManageUserService, private router: Router, private toastr: ToastrService,private service: UserManagementService){}
 
   
   ngOnInit() {
@@ -24,15 +30,34 @@ export class ManageUsersComponent implements OnInit {
       ],CustomIndexValidator.IndexNumber(this.afs)],
       RFIDNumber:  ['', [
         Validators.required,
-      ],CustomRFIDValidator.RFIDNumber(this.afs)],
+      ], CustomRFIDValidator.RFIDNumber(this.afs)],
+      stream: ['', [Validators.required]],
+      academicYear: ['', Validators.required],
     });
+    this.getUsers();
   }
+  list;
+
+  getUsers = () =>
+    this.manageuser
+      .getUsers()
+      .subscribe(res => (this.list = res));
+
+  deleteUser = data => this.manageuser.deleteUser(data);
 
   get IndexNumber() {
     return this.IndexForm.get('IndexNumber')
   }
 
   get RFIDNumber() {
+    return this.IndexForm.get('RFIDNumber')
+  }
+
+  get stream() {
+    return this.IndexForm.get('stream')
+  }
+
+  get academicYear() {
     return this.IndexForm.get('RFIDNumber')
   }
 
@@ -44,8 +69,22 @@ export class ManageUsersComponent implements OnInit {
         this.toastr.success('Student Index inserted successfully!');
       });
     }
+
+
+    
   }
 
+
+  onEdit(stu: UserModel) {
+    this.service.formData = Object.assign({}, stu);
+  }
+
+  onDelete(id: string) {
+    if (confirm("Are you sure to delete this record?")) {
+      this.afs.doc('studentIndex/' + id).delete();
+      this.toastr.warning('Deleted successfully','EMP. Register');
+    }
+  }
 
  
 }
@@ -83,5 +122,6 @@ export class CustomRFIDValidator {
 
     }
   }
+  
 
 }

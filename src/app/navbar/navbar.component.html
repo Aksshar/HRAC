@@ -16,14 +16,14 @@
           <li class="nav-item" *ngIf="!user">
             <a class="nav-link" routerLink="SignUp">SignUp</a>
           </li>
-          <li class="nav-item" *ngIf="user">
+          <li class="nav-item" *ngIf="user && user.email !== 'abc@gmail.com'">
             <a class="nav-link" routerLink="Attendance">Attendance</a>
           </li>
           <li class="nav-item" *ngIf="user">
-            <a class="nav-link" routerLink="">Hall-Reservation</a>
+            <a class="nav-link" routerLink="HallReservation">Hall-Reservation</a>
           </li>
           <li class="nav-item" *ngIf="user">
-            <a class="nav-link" routerLink="Dashboard/dashboard-admin">Dash-board</a>
+            <a *ngIf="user.email == 'abc@gmail.com'" class="nav-link" routerLink="Dashboard/dashboard-admin">Dash-board</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="SignUp">About Us</a>
