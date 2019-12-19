@@ -10,7 +10,7 @@
 
                 <ng-template #content let-modal>
                     <div class="modal-header">
-                      <h6 class="alert alert-warning" id="modal-basic-title">Create a request for booking this hall </h6>
+                      <h6 class="alert alert-warning" id="modal-basic-title" style="color: blueviolet;background-color: #F5E1FD;border-color: blueviolet;">Create a request for booking this hall </h6>
                       <button type="button" class="btn btn-sm btn-outline-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -19,19 +19,19 @@
                       <form>
                         <div class="form-group">
                           <label for="dateOfBirth"><strong>Select Date :</strong></label>
-                           <input type="date" class="form-control" id="dateOfBirth">
+                           <input type="date" class="form-control" style="border-left: 3px solid blueviolet;" id="dateOfBirth">
                         </div>
                         <div class="form-group">
                             <label for="startingtime"><strong>Commencing time :</strong></label>
-                             <input type="time" class="form-control" id="startingtime">
+                             <input type="time" class="form-control" style="border-left: 3px solid blueviolet;" id="startingtime">
                         </div>
                         <div class="form-group">
                             <label for="Finishingtime"><strong>Finishing time :</strong></label>
-                             <input type="time" class="form-control" id="Finishingtime">
+                             <input type="time" class="form-control" style="border-left: 3px solid blueviolet;" id="Finishingtime">
                         </div>
                         <div class="form-group">
                             <label for="Reason"><strong>Provide detail information of the reason for booking :</strong></label>
-                            <textarea class="form-control" id="Reason" rows="3"></textarea>
+                            <textarea class="form-control" id="Reason" style="border-left: 3px solid #00D024;" rows="3"></textarea>
                         </div>
                       </form>
                     </div>
