@@ -5,7 +5,52 @@
                 <hr>
                 <h5 class="card-title">Feel free to make a Booking request!</h5>
                 <p class="card-text">Check the schedular to make sure your time schedule is available.</p>
-                <a href="#" class="btn btn-success">Make booking Request</a>
+              
+
+
+                <ng-template #content let-modal>
+                    <div class="modal-header">
+                      <h6 class="alert alert-warning" id="modal-basic-title">Create a request for booking this hall </h6>
+                      <button type="button" class="btn btn-sm btn-outline-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="dateOfBirth"><strong>Select Date :</strong></label>
+                           <input type="date" class="form-control" id="dateOfBirth">
+                        </div>
+                        <div class="form-group">
+                            <label for="startingtime"><strong>Commencing time :</strong></label>
+                             <input type="time" class="form-control" id="startingtime">
+                        </div>
+                        <div class="form-group">
+                            <label for="Finishingtime"><strong>Finishing time :</strong></label>
+                             <input type="time" class="form-control" id="Finishingtime">
+                        </div>
+                        <div class="form-group">
+                            <label for="Reason"><strong>Provide detail information of the reason for booking :</strong></label>
+                            <textarea class="form-control" id="Reason" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-sm btn-outline-success" (click)="modal.close('Save click')">Make request</button>
+                    </div>
+                  </ng-template>
+                  <div class="row">
+                      <div class="col">
+                        <button class="btn btn-sm btn-success" (click)="openLg(content)">Make a new booking request</button>
+                      </div>
+                      <div class="col">
+                        <button class="btn btn-sm btn-primary" style="background-color: blueviolet;border-color: blueviolet;">Discover My booking requests.</button>
+                      </div>
+                  </div>
+                  
+                  
+
+
                 <hr>
             </div>
             <div class="col">
@@ -16,5 +61,6 @@
             
     </div>
     </div>
+  
   </div>
 <app-calender></app-calender>
