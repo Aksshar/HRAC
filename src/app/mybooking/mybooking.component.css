@@ -1,0 +1,29 @@
+.card-bg{
+    height: 1000px;
+    padding: 50px;
+}
+.card-block-purple{
+    border-left: 5px solid blueviolet;
+    box-shadow: 10px 10px 36px -17px rgba(0,0,0,0.75);
+}
+
+.card-block-green{
+    margin-top: 20px;
+    border-left: 5px solid #00D024;
+    box-shadow: 10px 10px 36px -17px rgba(0,0,0,0.75);
+}
+
+.alert-title{
+    color: blueviolet;
+    text-align: center;
+    background-color: #F5E1FD;
+    text-transform:uppercase;
+    border-color: blueviolet;
+}
+
+.alert-sm{
+    padding: 3px;
+    width:150px;
+    text-align: center;
+    cursor: pointer;
+}

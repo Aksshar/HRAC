@@ -37,6 +37,7 @@ import { ManageAccessComponent } from './manage-access/manage-access.component';
 import { CalenderComponent } from './components/calender/calender.component';
 import { ScheduleModule, RecurrenceEditorModule, DayService, MonthService, WeekService } from '@syncfusion/ej2-angular-schedule';
 import { HallReservationComponent } from './hall-reservation/hall-reservation.component';
+import { MybookingComponent } from './mybooking/mybooking.component';
 
 
 
@@ -58,7 +59,8 @@ import { HallReservationComponent } from './hall-reservation/hall-reservation.co
     CurrentsemesterComponent,
     ManageAccessComponent,
     CalenderComponent,
-    HallReservationComponent
+    HallReservationComponent,
+    MybookingComponent
  
   ],
   imports: [
@@ -69,7 +71,8 @@ import { HallReservationComponent } from './hall-reservation/hall-reservation.co
       { path: 'SignIn', component: SigninComponent },
       { path: 'SignUp', component: SignUpComponent },
       { path: 'Attendance', component: AttendanceComponent },
-      { path: 'HallReservation', component: HallReservationComponent},
+      { path: 'HallReservation', component: HallReservationComponent },
+      { path: 'HallReservation/Mybooking', component:MybookingComponent},
       {
         path: 'Dashboard', component: DashboardComponent,
         children: [
