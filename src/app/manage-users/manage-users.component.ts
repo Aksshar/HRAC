@@ -65,7 +65,10 @@ export class ManageUsersComponent implements OnInit {
     let data = this.IndexForm.value;
     if (this.IndexForm.valid) {
       this.IndexForm.reset();
-      this.manageuser.insertIndex(data).then(res => {
+      //Save to frebase
+      //this.afs.collection('studentIndex').add(data)
+      this.manageuser.insertIndex(data)
+      .then(res => {
         this.toastr.success('Student Index inserted successfully!');
       });
     }
@@ -74,8 +77,10 @@ export class ManageUsersComponent implements OnInit {
     
   }
 
-
+    //edit function
   onEdit(stu: UserModel) {
+    //get values to form
+    this.IndexForm.setValue(UserModel);
     this.service.formData = Object.assign({}, stu);
   }
 
@@ -85,7 +90,6 @@ export class ManageUsersComponent implements OnInit {
       this.toastr.warning('Deleted successfully','EMP. Register');
     }
   }
-
  
 }
 
