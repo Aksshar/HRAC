@@ -51,8 +51,8 @@ export class AddNewHallComponent implements OnInit {
         finalize(()=>{
           fileRef.getDownloadURL().subscribe((url)=>{
             console.log(url)
-            //formValue['imageurl']=url;
-            // this.service.insertImageDetails(formValue);
+            formValue['imageurl']=url;
+             this.service.insertImageDetails(formValue);
              
             //this.resetForm();
           })
