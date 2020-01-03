@@ -13,6 +13,7 @@ export class UploadComponent implements OnInit {
   }
 
 }
+// code 01
 /*
 var storageRef = firebase.storage().ref();
 
@@ -34,6 +35,7 @@ var uploadTask = storageRef.child('images/mountains.jpg').put(file, metadata);
 
 */
 
+//code 2
 //@Injectable()
 export class UploadService {
 
