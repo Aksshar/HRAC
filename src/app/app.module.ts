@@ -37,6 +37,7 @@ import { NewBookingComponent } from './new-booking/new-booking.component';
 import { NewhallComponent } from './newhall/newhall.component';
 import { HallsComponent } from './halls/halls.component';
 import { MyBookingComponent } from './my-booking/my-booking.component';
+import { UploadComponent } from './upload/upload.component';
 
 
 
@@ -63,7 +64,8 @@ import { MyBookingComponent } from './my-booking/my-booking.component';
     NewBookingComponent,
     NewhallComponent,
     HallsComponent,
-    MyBookingComponent
+    MyBookingComponent,
+    UploadComponent
  
   ],
   imports: [
