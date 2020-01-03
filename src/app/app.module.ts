@@ -38,6 +38,7 @@ import { NewhallComponent } from './newhall/newhall.component';
 import { HallsComponent } from './halls/halls.component';
 import { MyBookingComponent } from './my-booking/my-booking.component';
 import { UploadComponent } from './upload/upload.component';
+import { MassageComponent } from './massage/massage.component';
 
 
 
@@ -65,7 +66,8 @@ import { UploadComponent } from './upload/upload.component';
     NewhallComponent,
     HallsComponent,
     MyBookingComponent,
-    UploadComponent
+    UploadComponent,
+    MassageComponent
  
   ],
   imports: [
