@@ -3,7 +3,7 @@ export class Booking {
     name:string;
     session:string;
     code:string;
-      lecture:string;
-    //time:string;
+    lecture:string;
+    time:string;
 
 }
