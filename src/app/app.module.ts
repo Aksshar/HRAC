@@ -84,6 +84,7 @@ import { MassageComponent } from './massage/massage.component';
       { path: 'Addnewhall', component: AddNewHallComponent },
       { path: 'Mybooking', component: MyBookingComponent },
       { path: 'Newbooking', component: NewBookingComponent },
+      
       {
         path: 'Dashboard', component: DashboardComponent,
         children: [
