@@ -1,0 +1,18 @@
+<table class=" table table-hover">
+   <thead>
+       <th>Full name</th>
+       <th>Hall name</th>
+       <th>Subject code</th>
+       <th>Subject</th>
+       <th>Time</th>
+   </thead> 
+   <tbody>
+       <tr *ngFor="let b of list">
+           <td>{{b.name}}</td>
+           <td>{{b.session}}</td>
+           <td>{{b.code}}</td>
+           <td>{{b.lecture}}</td>
+           <td>{{b.time}}</td>
+       </tr>
+   </tbody>
+</table>
