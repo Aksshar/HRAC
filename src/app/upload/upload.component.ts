@@ -36,7 +36,8 @@ var uploadTask = storageRef.child('images/mountains.jpg').put(file, metadata);
 */
 
 //code 2
-//@Injectable()
+/*
+@Injectable()
 export class UploadService {
 
   constructor(private af: AngularFire, private db: AngularFirebatabase) { }
@@ -65,3 +66,4 @@ export class UploadService {
       }
     );
   }
+}*/
