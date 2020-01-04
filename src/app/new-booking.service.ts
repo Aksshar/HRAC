@@ -6,6 +6,13 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 export class NewBookingService {
 
- 
+  
+  constructor(private afs: AngularFirestore) { }
+
+  //get booking details
+  getBooking()
+  {
+    return this.afs.collection('booking').snapshotChanges();
+  }
 
 }
