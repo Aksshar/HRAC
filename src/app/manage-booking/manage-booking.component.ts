@@ -20,7 +20,7 @@ export class ManageBookingComponent implements OnInit{
        return{
          id: item.payload.doc.id,
          //...item.payload.doc.data()
-        } as Booking
+        } as Booking;
      })
    });
     
