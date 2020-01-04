@@ -42,7 +42,7 @@ export class AddNewHallComponent implements OnInit {
   }
 
   onSubmit(formValue){
-    // error reset when submit
+    // error.... reset when submit
     
     this.isSubmitted= true;
     if(this.AddHallform.valid){

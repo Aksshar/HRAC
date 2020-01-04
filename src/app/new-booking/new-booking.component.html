@@ -1,27 +1,40 @@
 <div class="card" >
     <div class="card-body">
         <form  [formGroup]="AddHallform" (submit)="onSubmit(AddHallform.value)">
-            <div class="image">
+            <!--<div class="image">
                 <img [src]="imgSrc" width="350px" height="200px" (click)= fileUploader.click()>
-            </div>
+            </div>!-->
             <div class="form-group">
-                <label>Select file to upload</label>
+               
                 <input type="file" class="form-control" #fileUploader formControlName="imageurl" (change)="ShowPreview($event)">
             </div>
+
             <div class="form-group">
-                <input  class="form-control" formControlName="name" placeholder="Name">
+                <input  class="form-control" formControlName="name" placeholder="Full Name">
             </div>
             <div class="form-group">
-                <input  class="form-control" formControlName="seats" placeholder="Seats">
+                <input  class="form-control" formControlName="session" placeholder="Session name">
             </div>
             <div class="form-group">
-                <select  class="form-control" formControlName="type" >
-                    <option>Lecture Hall</option>
-                    <option>Auditorium</option>
+                <select  class="form-control" formControlName="code" >
+                    <option>SCS1201</option>
+                    <option>SCS1202</option>
+                    <option>SCS1203</option>
+                    <option>SCS1204</option>
+                    
                 </select>
             </div>
             <div class="form-group">
-                <input  class="form-control" formControlName="location" placeholder="Location">
+                <select  class="form-control" formControlName="lecture" placeholder="Lecture name">
+                    <option>DSA</option>
+                    <option>Database</option>
+                    <option>PLC</option>
+                    <option>SE</option>
+                    
+                </select>
+            </div>
+            <div class="form-group">
+                <input  class="form-control" formControlName="time" placeholder="Time">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
