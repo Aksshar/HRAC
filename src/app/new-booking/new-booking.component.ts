@@ -29,10 +29,11 @@ export class NewBookingComponent implements OnInit {
 
   onSubmit(){
     let data = this.BookingForm.value;
-    this.BookingForm.reset();
-    this.afs.collection('booking').add(data).then(res => {
+    
+    this.afs.collection('newbooking').add(data).then(res => {
       this.toastr.success('Submitted successfully! Wait for comfimention');
     });
+    //this.BookingForm.reset();
   }
 
 }

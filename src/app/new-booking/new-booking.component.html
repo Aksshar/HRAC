@@ -1,13 +1,13 @@
 <div class="card" >
     <div class="card-body">
         <form  [formGroup]="Bookingform" (submit)="onSubmit(Bookingform.value)">
-            <div class="image">
+            <!--<div class="image">
                 <img [src]="imgSrc" width="350px" height="200px" (click)= fileUploader.click()>
             </div>
-           <!-- <div class="form-group">
+            <div class="form-group">
                
                 <input type="file" class="form-control" #fileUploader formControlName="imageurl" (change)="ShowPreview($event)">
-            </div>!-->
+            </div>-->
 
             <div class="form-group">
                 <input  class="form-control" formControlName="name" placeholder="Full Name">
