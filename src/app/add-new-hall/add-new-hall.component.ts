@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl ,FormGroup,Validators} from '@angular/forms';
-import { AngularFireStorage } from 'angularfire2/storage';
-import { finalize } from "rxjs/operators";
+import { AngularFireStorage, AngularFireUploadTask} from 'angularfire2/storage';
+//import { finalize } from "rxjs/operators";
+import { Observable } from 'rxjs';
 import { ImageService } from '../image.service';
 
 
@@ -16,6 +17,8 @@ export class AddNewHallComponent implements OnInit {
   selectedimage:any =null;
   isSubmitted:boolean =false;
 
+  private downloadURL: Observable<string>;
+
   AddHallform =new FormGroup({
     name : new FormControl('',Validators.required), 
     seats : new FormControl('',Validators.required),
@@ -27,6 +30,7 @@ export class AddNewHallComponent implements OnInit {
 
   ngOnInit() {
   }
+  
 
   ShowPreview(event:any){
     if(event.target.files && event.target.files[0]){
@@ -46,8 +50,9 @@ export class AddNewHallComponent implements OnInit {
     
     this.isSubmitted= true;
     if(this.AddHallform.valid){
-      var filePath = "${formvalue.type}/${this.selectedimage.name}_${new Date().getTime()}";
+      const filePath = "${formvalue.type}/${this.selectedimage.name}_${new Date().getTime()}";
       const fileRef =this.storage.ref(filePath);
+      /*
       this.storage.upload(filePath,this.selectedimage).snapshotChanges().pipe(
         finalize(()=>{
           fileRef.getDownloadURL().subscribe((url)=>{
@@ -56,12 +61,21 @@ export class AddNewHallComponent implements OnInit {
              this.service.insertImageDetails(formValue);
              
             //this.resetForm();
-          })
+          }) 
         })
-      )
+      )*/
 
-    }
+      const task: AngularFireUploadTask =this.storage.upload(filePath,this.selectedimage);
+      //.snapshotChanges().pipe(
+        //finalize(()=>{
+          //this.downloadURL= task.downlardURL();
+          this.downloadURL.subscribe((url)=>{
+            console.log(url)
+            formValue['imageurl']=url;
+             this.service.insertImageDetails(formValue);
+    });
   }
+}
 
   get formControls()
 {

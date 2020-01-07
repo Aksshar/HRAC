@@ -14,16 +14,16 @@ import { NewBookingService } from '../new-booking.service';
 export class NewBookingComponent implements OnInit {
 
   BookingForm: FormGroup;
-  constructor(private afs: AngularFirestore, private fb: FormBuilder, private toastr: ToastrService, private service:NewBookingService ){}
+  constructor(private afs: AngularFirestore, private fb:FormBuilder, private toastr: ToastrService, private service:NewBookingService ){}
    
    
     ngOnInit() {
-    this.BookingForm = this.fb.group({
-      name:  ['', Validators.required],
-      lecture:  ['', Validators.required],
-      code:  ['', Validators.required],
-      session:  ['', Validators.required],
-      Time:  ['', Validators.required],
+    this.BookingForm = new FormGroup({
+      name: new FormControl( ['', Validators.required]),
+      lecture:  new FormControl(['', Validators.required]),
+      code:  new FormControl(['', Validators.required]),
+      session:  new FormControl(['', Validators.required]),
+      Time: new FormControl( ['', Validators.required])
     });
   }
 
@@ -33,7 +33,7 @@ export class NewBookingComponent implements OnInit {
     this.afs.collection('newbooking').add(data).then(res => {
       this.toastr.success('Submitted successfully! Wait for comfimention');
     });
-    //this.BookingForm.reset();
+    this.BookingForm.reset();
   }
 
 }
