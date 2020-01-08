@@ -1,3 +1,4 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LectureHallComponent implements OnInit {
 
-  constructor() { }
+  ListOfhalls;
+  constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
+    this.db.collection('Halls').valueChanges().subscribe(val => {
+      this.ListOfhalls = val;
+    })
   }
 
 }
