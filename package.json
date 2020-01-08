@@ -27,6 +27,7 @@
     "g": "^2.0.1",
     "ngx-toastr": "^11.1.2",
     "rxjs": "~6.4.0",
+    "strip-json-comments": "^3.0.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1",
     "zxcvbn": "^4.4.2"

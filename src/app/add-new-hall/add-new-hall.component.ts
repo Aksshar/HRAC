@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl ,FormGroup,Validators} from '@angular/forms';
+import { FormControl ,FormGroup,Validators,FormBuilder, AbstractControl} from '@angular/forms';
 import { AngularFireStorage, AngularFireUploadTask} from 'angularfire2/storage';
-//import { finalize } from "rxjs/operators";
+import { finalize } from "rxjs/operators";
 import { Observable } from 'rxjs';
 import { ImageService } from '../image.service';
 
@@ -17,7 +17,7 @@ export class AddNewHallComponent implements OnInit {
   selectedimage:any =null;
   isSubmitted:boolean =false;
 
-  private downloadURL: Observable<string>;
+  private downloadURL: Observable <string>;
 
   AddHallform =new FormGroup({
     name : new FormControl('',Validators.required), 
@@ -50,7 +50,7 @@ export class AddNewHallComponent implements OnInit {
     
     this.isSubmitted= true;
     if(this.AddHallform.valid){
-      const filePath = "${formvalue.type}/${this.selectedimage.name}_${new Date().getTime()}";
+      const filePath = "${formValue.type}/${this.selectedimage.name}_${new Date().getTime()}";
       const fileRef =this.storage.ref(filePath);
       /*
       this.storage.upload(filePath,this.selectedimage).snapshotChanges().pipe(
@@ -65,15 +65,21 @@ export class AddNewHallComponent implements OnInit {
         })
       )*/
 
-      const task: AngularFireUploadTask =this.storage.upload(filePath,this.selectedimage);
+      const task=this.storage.upload(filePath,this.selectedimage);
       //.snapshotChanges().pipe(
         //finalize(()=>{
-          //this.downloadURL= task.downlardURL();
-          this.downloadURL.subscribe((url)=>{
+          
+          //this.downloadURL= task.downlordURL();
+          task.snapshotChanges().pipe(
+            finalize(() => this.downloadURL = fileRef.getDownloadURL() )
+         )
+        .subscribe()
+
+         /* this.downloadURL.subscribe((url)=>{
             console.log(url)
             formValue['imageurl']=url;
              this.service.insertImageDetails(formValue);
-    });
+    });*/
   }
 }
 

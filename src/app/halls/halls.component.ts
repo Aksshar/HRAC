@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../image.service';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-halls',

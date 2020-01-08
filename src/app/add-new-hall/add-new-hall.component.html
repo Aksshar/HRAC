@@ -7,12 +7,17 @@
             <div class="form-group">
                 <label>Select file to upload</label>
                 <input type="file" class="form-control" #fileUploader formControlName="imageurl" (change)="ShowPreview($event)">
+                
             </div>
+            
+              
             <div class="form-group">
                 <input  class="form-control" formControlName="name" placeholder="Name">
+              
             </div>
             <div class="form-group">
                 <input  class="form-control" formControlName="seats" placeholder="Seats">
+             
             </div>
             <div class="form-group">
                 <select  class="form-control" formControlName="type" >
@@ -20,6 +25,7 @@
                     <option>Auditorium</option>
                     <option>Meeting Room</option>
                 </select>
+               
             </div>
             <div class="form-group">
                 <select  class="form-control" formControlName="location" placeholder="Location">
@@ -29,6 +35,7 @@
                     <option>4th Floor</option>
                     
                 </select> 
+                
             </div>
             <div class="form-group">
                 <button  class="btn btn-success" type="submit">submit</button>
