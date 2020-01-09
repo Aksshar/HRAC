@@ -22,7 +22,7 @@ export class HallReservationComponent implements OnInit {
   public dataList: Array<BookingDate> = [];
   list;
   public selectedDate: Date = new Date();
-  public currentView: View = 'Day';
+  public currentView: View = 'Week';
   public readonly: boolean = true;
   public eventSettings: EventSettingsModel;
 
@@ -50,20 +50,22 @@ export class HallReservationComponent implements OnInit {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
       this.hallNumber = params.get('hallNumber');
       console.log(this.hallNumber);
+      this.afs.collection('booking', ref => ref.where('hallNumber', '==',this.hallNumber)).valueChanges().subscribe(ref => {
+        this.list = ref;
+        console.log(this.list);
+        for (let i of this.list) {
+          let temp = new BookingDate();
+          console.log(new Date(i.stime));
+          temp.StartTime = new Date(i.stime);
+          console.log(temp);
+          temp.EndTime = new Date(i.etime);
+          temp.Subject = i.Subject;
+          this.dataList.push(temp);
+        }
+        this.eventSettings = { dataSource: this.dataList};
+      });
     });
-    this.afs.collection('booking').valueChanges().subscribe(ref => {
-      this.list = ref;
-      console.log(this.list);
-      for (let i of this.list) {
-        let temp = new BookingDate();
-        console.log(new Date(i.stime));
-        temp.StartTime = new Date(i.stime);
-        console.log(temp);
-        temp.EndTime = new Date(i.etime);
-        this.dataList.push(temp);
-      }
-      this.eventSettings = { dataSource: this.dataList};
-    });
+   
     
     this.bookingForm = this.fb.group({
       selectDate: ['', [Validators.required]],

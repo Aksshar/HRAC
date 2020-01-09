@@ -75,7 +75,7 @@ import { LectureHallComponent } from './lecture-hall/lecture-hall.component';
       { path: 'Attendance', component: AttendanceComponent },
       { path: 'LectureHalls', component: LectureHallComponent },
       { path: 'HallReservation/Mybooking', component: MybookingComponent },
-      { path: 'HallReservation/:id', component: HallReservationComponent},
+      { path: 'HallReservation/:hallNumber', component: HallReservationComponent},
       {
         path: 'Dashboard', component: DashboardComponent,
         children: [
