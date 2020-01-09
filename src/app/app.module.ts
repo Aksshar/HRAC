@@ -39,6 +39,8 @@ import { HallsComponent } from './halls/halls.component';
 import { MyBookingComponent } from './my-booking/my-booking.component';
 import { UploadComponent } from './upload/upload.component';
 import { MassageComponent } from './massage/massage.component';
+import { TestuploadComponent } from './testupload/testupload.component';
+import { DropZoneDirective } from './drop-zone.directive';
 
 
 
@@ -67,7 +69,9 @@ import { MassageComponent } from './massage/massage.component';
     HallsComponent,
     MyBookingComponent,
     UploadComponent,
-    MassageComponent
+    MassageComponent,
+    TestuploadComponent,
+    DropZoneDirective
  
   ],
   imports: [
