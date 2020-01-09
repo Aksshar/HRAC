@@ -16,27 +16,27 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                      <form [formGroup] = "bookingForm">
                         <div class="form-group">
                           <label for="dateOfBirth"><strong>Select Date :</strong></label>
-                           <input type="date" class="form-control" style="border-left: 3px solid blueviolet;" id="dateOfBirth">
+                           <input type="date" class="form-control" formControlName="selectDate" style="border-left: 3px solid blueviolet;" id="dateOfBirth">
                         </div>
                         <div class="form-group">
                             <label for="startingtime"><strong>Commencing time :</strong></label>
-                             <input type="time" class="form-control" style="border-left: 3px solid blueviolet;" id="startingtime">
+                             <input type="time" class="form-control" formControlName="startingtime" style="border-left: 3px solid blueviolet;" id="startingtime">
                         </div>
                         <div class="form-group">
                             <label for="Finishingtime"><strong>Finishing time :</strong></label>
-                             <input type="time" class="form-control" style="border-left: 3px solid blueviolet;" id="Finishingtime">
+                             <input type="time" class="form-control" formControlName="endingtime" style="border-left: 3px solid blueviolet;" id="Finishingtime">
                         </div>
                         <div class="form-group">
                             <label for="Reason"><strong>Provide detail information of the reason for booking :</strong></label>
-                            <textarea class="form-control" id="Reason" style="border-left: 3px solid #00D024;" rows="3"></textarea>
+                            <textarea class="form-control" id="Reason" formControlName="reason" style="border-left: 3px solid #00D024;" rows="3"></textarea>
                         </div>
                       </form>
                     </div>
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-sm btn-outline-success" (click)="modal.close('Save click')">Make request</button>
+                      <button type="submit" class="btn btn-sm btn-outline-success" (click)="onSubmit()">Make request</button>
                     </div>
                   </ng-template>
                   <div class="row">
@@ -63,4 +63,4 @@
     </div>
   
   </div>
-<app-calender></app-calender>
+  <ejs-schedule   [readonly]="readonly" [selectedDate]="selectedDate" [eventSettings]="eventSettings" [currentView]="currentView"></ejs-schedule>
