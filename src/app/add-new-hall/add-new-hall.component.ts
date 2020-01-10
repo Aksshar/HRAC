@@ -45,7 +45,7 @@ export class AddNewHallComponent implements OnInit {
      }
   }
 
-  onSubmit(formValue){
+  public async onSubmit(formValue){
     // error.... reset when submit
     
     this.isSubmitted= true;
@@ -70,10 +70,12 @@ export class AddNewHallComponent implements OnInit {
         //finalize(()=>{
           
           //this.downloadURL= task.downlordURL();
-          task.snapshotChanges().pipe(
-            finalize(() => this.downloadURL = fileRef.getDownloadURL() )
-         )
-        .subscribe()
+         // task.snapshotChanges().pipe(
+            //finalize(() => 
+            await task.snapshotChanges().toPromise();
+            this.downloadURL = await fileRef.getDownloadURL().toPromise();
+         //)
+        //.subscribe()
 
          /* this.downloadURL.subscribe((url)=>{
             console.log(url)
