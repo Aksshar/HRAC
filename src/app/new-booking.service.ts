@@ -12,7 +12,7 @@ export class NewBookingService {
   //get booking details
   getBooking()
   {
-    return this.afs.collection('booking').snapshotChanges();
+    return this.afs.collection('new_booking_requests').snapshotChanges();
   }
 
 }
