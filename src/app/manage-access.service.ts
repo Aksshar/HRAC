@@ -30,8 +30,10 @@ export class ManageAccessService {
     return this.afs
     .collection("accessIndex")
     .doc(data.payload.doc.id)
-    .set({updated: true},{merge: true});
+    .set({},{merge: true});
   }
+
+  
 
   // updateUser(id: number, data:any){
    

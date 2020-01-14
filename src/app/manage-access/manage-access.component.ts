@@ -45,7 +45,7 @@ export class ManageAccessComponent implements OnInit {
  //updateUser= data => this.manageAccess.updateUser(this.IndexNumber,data);
  updateUser =data =>
             this.manageAccess.updateUser(data);
-
+git 
   get IndexNumber() {
     return this.AccessForm.get('IndexNumber')
   }
@@ -65,9 +65,10 @@ export class ManageAccessComponent implements OnInit {
       this.AccessForm.reset();
       this.manageAccess.insert(data).then(res => {
         this.toastr.success('Access Provided successfully!');
+        this.manageAccess.updateUser( data).then(res=>{
+          this.toastr.success('Updated successfully!');
       });
-      this.manageAccess.updateUser( data).then(res=>{
-        this.toastr.success('Updated successfully!');
+      
       });
     }    
   }

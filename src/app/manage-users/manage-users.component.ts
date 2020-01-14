@@ -76,6 +76,7 @@ export class ManageUsersComponent implements OnInit {
 
 
   onEdit(stu: UserModel) {
+    this.IndexForm.setValue(UserModel);
     this.service.formData = Object.assign({}, stu);
   }
 
