@@ -30,7 +30,7 @@ export class ManageAccessService {
     .collection("accessIndex")
     .doc(data.payload.doc.id)
     .set({},{merge: true});
-  }
+  }  
 
   getUsers() {
     return this.afs.collection("accessIndex").snapshotChanges();
