@@ -42,10 +42,10 @@ export class ManageAccessComponent implements OnInit {
 
   deleteUser = data => this.manageAccess.deleteUser(data);
 
- //updateUser= data => this.manageAccess.updateUser(this.IndexNumber,data);
+
  updateUser =data =>
             this.manageAccess.updateUser(data);
-git 
+
   get IndexNumber() {
     return this.AccessForm.get('IndexNumber')
   }

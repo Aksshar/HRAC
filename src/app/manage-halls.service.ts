@@ -18,7 +18,6 @@ export class ManageHallsService {
   }
 
 
-
   updateHalls(data) {
     return this.afs
       .collection("Halls")

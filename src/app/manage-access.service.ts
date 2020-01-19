@@ -26,19 +26,11 @@ export class ManageAccessService {
   }
 
   updateUser(data){
-    //data.IndexNumber=data;
     return this.afs
     .collection("accessIndex")
     .doc(data.payload.doc.id)
     .set({},{merge: true});
   }
-
-  
-
-  // updateUser(id: number, data:any){
-   
-  // }
-
 
   getUsers() {
     return this.afs.collection("accessIndex").snapshotChanges();
