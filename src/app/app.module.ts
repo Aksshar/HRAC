@@ -18,6 +18,7 @@ import { ManageUserService } from './manage-user.service';
 import { ManageHallsService } from './manage-halls.service';
 import { AuthService } from './auth.service';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
