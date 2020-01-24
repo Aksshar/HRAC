@@ -1,7 +1,7 @@
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 
-@Injectable({
+@Injectable({ 
   providedIn: 'root'
 })
 export class ManageAccessService {
@@ -24,6 +24,13 @@ export class ManageAccessService {
       .doc(data.payload.doc.id)
       .delete();
   }
+
+  updateUser(data){
+    return this.afs
+    .collection("accessIndex")
+    .doc(data.payload.doc.id)
+    .set({},{merge: true});
+  }  
 
   getUsers() {
     return this.afs.collection("accessIndex").snapshotChanges();

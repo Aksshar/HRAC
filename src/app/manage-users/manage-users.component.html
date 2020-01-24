@@ -91,12 +91,12 @@
       </thead>
       <tbody>
           <tr *ngFor="let order of list">
-            <td>
+            <td >
               {{ order.payload.doc.data().IndexNumber }}
             </td>
-            <td>{{ order.payload.doc.data().RFIDNumber }}</td>
-            <td>{{ order.payload.doc.data().stream }}</td>
-            <td>{{ order.payload.doc.data().academicYear }}</td>
+            <td >{{ order.payload.doc.data().RFIDNumber }}</td>
+            <td >{{ order.payload.doc.data().stream }}</td>
+            <td >{{ order.payload.doc.data().academicYear }}</td>
             <td
               
               (click)="deleteUser(order)"
@@ -104,7 +104,20 @@
             <div class="btn-remove">
                 Remove
             </div>
+          </td>
+          <td>
+            <!--Edit button-->
+            <button type="button" class="btn  btn-primary" (click)="onEdit(stu)">Edit</button>
             </td>
+            <td
+              
+            (click)="onEdit(order)"
+          >
+          <div class="btn-remove">
+              Edit
+          </div>
+          </td>
+
           </tr>
         </tbody>
     </table>

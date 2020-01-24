@@ -15,3 +15,21 @@
     color: #ed1c16;
     background-color: #ffff;
 }
+
+.btn-update{
+    padding: 6px;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: #0d7c16;
+    color: aliceblue;
+    width:100px;
+    text-align:center;
+    cursor: pointer;
+
+}
+
+.btn-update:hover{
+    border:1px solid #0d7c16;
+    color: #0d7c16;
+    background-color: #ffff;
+}

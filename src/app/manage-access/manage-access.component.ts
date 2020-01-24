@@ -42,6 +42,9 @@ export class ManageAccessComponent implements OnInit {
 
   deleteUser = data => this.manageAccess.deleteUser(data);
 
+
+ updateUser =data => this.manageAccess.updateUser(data);
+
   get IndexNumber() {
     return this.AccessForm.get('IndexNumber')
   }
@@ -61,18 +64,15 @@ export class ManageAccessComponent implements OnInit {
       this.AccessForm.reset();
       this.manageAccess.insert(data).then(res => {
         this.toastr.success('Access Provided successfully!');
+        this.manageAccess.updateUser( data).then(res=>{
+          this.toastr.success('Updated successfully!');
       });
-    }
-
-
-    
+      
+      });
+    }    
   }
 
-
 }
-
-
-
 
 export class CustomIndexValidator {
   static IndexNumber(afs: AngularFirestore) {
@@ -90,8 +90,6 @@ export class CustomIndexValidator {
     }
   }
 }
-
-
 
 export class CustomRFIDValidator {
   static RFIDNumber(afs: AngularFirestore) {
@@ -111,7 +109,6 @@ export class CustomRFIDValidator {
   
 
 }
-
 
 export class CustomHallValidator {
   static HallNumber(afs: AngularFirestore) {

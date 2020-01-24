@@ -5,6 +5,7 @@
             <h5 class="card-title">Access Management</h5>
             <p class="card-text">Provide Access to the Users by adding their index Numbers, RFID tag Numbers  and Hall.</p> 
             <form [formGroup]="AccessForm">
+              <input type="hidden" class="form-control" formControlName="IndexNumber" id="IndexNumber"  [ngClass]="{ 'is-invalid': (IndexNumber.touched && IndexNumber.invalid) || (IndexNumber.value && IndexNumber.invalid) }" >
               <div class="form-group">
                 <label for="IndexNumber">User Index Number</label>
                 <input type="text" class="form-control" formControlName="IndexNumber" id="IndexNumber" style="width:50%;" [ngClass]="{ 'is-invalid': (IndexNumber.touched && IndexNumber.invalid) || (IndexNumber.value && IndexNumber.invalid) }" placeholder="Index Number (eg:1700XXXX).">
@@ -88,6 +89,15 @@
                                       Remove
                                   </div>
                                   </td>
+                                  <td 
+                                    
+                                    (click)="updateUser(order)"
+                                  >
+                                  <div class="btn-update">
+                                      Update
+                                  </div>
+                                  </td>
+
                                 </tr>
                               </tbody>
                           </table>
