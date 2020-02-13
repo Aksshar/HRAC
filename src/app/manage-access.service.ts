@@ -29,7 +29,19 @@ export class ManageAccessService {
     return this.afs
     .collection("accessIndex")
     .doc(data.payload.doc.id)
-    .set({},{merge: true});
+    .update(data);
+    // .update({
+    //  HallNumber: hallnumber
+    // });
+
+    // return this.afs.collection("accessIndex").update(data).then(function(docRef) {
+    //   console.log("Document written with ID: ", docRef.id);
+    // }
+    // return this.afs
+    // .collection("accessIndex")
+    // .doc(data.payload.doc.id)
+    // .update(data);
+    //.set({},{merge: true});  
   }  
 
   getUsers() {

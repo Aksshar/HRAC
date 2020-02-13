@@ -32,7 +32,22 @@ export class ManageAccessComponent implements OnInit {
     });
     this.getUsers();
   }
-
+  updateUser(data){
+    // console.log(data.data())
+    var da=data.payload.doc.data()
+    this.AccessForm=this.fb.group({
+      IndexNumber:  [da.IndexNumber, [
+        Validators.required
+      ],CustomIndexValidator.IndexNumber(this.afs)],
+      RFIDNumber:  [da.RFIDNumber, [
+        Validators.required,
+      ], CustomRFIDValidator.RFIDNumber(this.afs)],
+      HallNumber:  [da.HallNumber, [
+        Validators.required,
+      ], CustomHallValidator.HallNumber(this.afs)],
+    });
+  }
+  
   list;
 
   getUsers = () =>
@@ -43,7 +58,7 @@ export class ManageAccessComponent implements OnInit {
   deleteUser = data => this.manageAccess.deleteUser(data);
 
 
- updateUser =data => this.manageAccess.updateUser(data);
+//  updateUser =data => this.manageAccess.updateUser(data);
 
   get IndexNumber() {
     return this.AccessForm.get('IndexNumber')
@@ -64,9 +79,9 @@ export class ManageAccessComponent implements OnInit {
       this.AccessForm.reset();
       this.manageAccess.insert(data).then(res => {
         this.toastr.success('Access Provided successfully!');
-        this.manageAccess.updateUser( data).then(res=>{
-          this.toastr.success('Updated successfully!');
-      });
+        // this.manageAccess.updateUser( data).then(res=>{
+        //   this.toastr.success('Updated successfully!');
+      // });
       
       });
     }    
