@@ -78,6 +78,7 @@
           </div>
         
         <button type="submit" class="btn btn-primary" (click)="onSubmit()">Insert Student</button>
+        <button  class="btn  btn-success" (click)="updateuser(order)">Update</button>
       </form>    
       <p>
             
@@ -107,14 +108,9 @@
           </td>
           <td>
             <!--Edit button-->
-            <button type="button" class="btn  btn-primary" (click)="onEdit(stu)">Edit</button>
+            <button  class="btn  btn-primary" (click)="updateuser(order)">Edit</button>
             </td>
-            <td
-              
-            (click)="onEdit(order)"
-          >
-          
-          </td>
+            
 
           </tr>
         </tbody>

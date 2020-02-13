@@ -46,6 +46,7 @@ export class ManageAccessComponent implements OnInit {
         Validators.required,
       ], CustomHallValidator.HallNumber(this.afs)],
     });
+    
   }
   
   list;
