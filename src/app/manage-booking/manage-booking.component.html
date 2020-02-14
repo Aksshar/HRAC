@@ -1,2 +1,80 @@
 
 <button (click)="sendEmail()">Send Email via Cloud Function</button>
+<!-- Request booking Table -->
+<h6 class="text-center">Request Booking</h6><br/>
+<table class="table">
+    <thead>
+        <th>SelectDate</th>
+        <th>Startingtime</th>
+        <th>Endingtime</th>
+        <th>Reason</th>
+        <th></th>
+        <th></th>
+    </thead>
+    
+    <tr *ngFor ="let order of list1">
+    
+        <td>{{order.payload.doc.data().selectDate}}</td>
+        <td>{{order.payload.doc.data().startingtime}}</td>
+        <td>{{order.payload.doc.data().endingtime}}</td>
+        <td>{{order.payload.doc.data().reason}}</td>
+        <td>
+            <button class="btn  btn-success" (click)="confirm(order)">confirm</button>
+        </td>
+        <td>
+            <button class="btn  btn-danger" (click)="reject(order)">reject</button>
+        </td>
+   
+    </tr>
+
+    
+</table>
+
+<!-- Confirmed booking Table -->
+<h6 class="text-center">Confirmed Booking</h6><br/>
+<table class="table " >
+    <thead>
+        <th>SelectDate</th>
+        <th>Startingtime</th>
+        <th>Endingtime</th>
+        <th>Reason</th>
+        <th></th>
+        
+    </thead>
+    
+    <tr *ngFor ="let order of list2">
+    
+        <td>{{order.payload.doc.data().selectDate}}</td>
+        <td>{{order.payload.doc.data().startingtime}}</td>
+        <td>{{order.payload.doc.data().endingtime}}</td>
+        <td>{{order.payload.doc.data().reason}}</td>
+        <td>
+            <button class="btn  btn-danger" (click)="reject()">reject</button>
+        </td>
+    </tr>
+</table>
+
+
+
+<!-- rejected booking Table -->
+<h6 class="text-center">Request Booking</h6><br/>
+<table class="table " >
+    <thead>
+        <th>SelectDate</th>
+        <th>Startingtime</th>
+        <th>Endingtime</th>
+        <th>Reason</th>
+        <th></th>  
+    </thead>
+    
+    <tr *ngFor ="let order of list3">
+    
+        <td>{{order.payload.doc.data().selectDate}}</td>
+        <td>{{order.payload.doc.data().startingtime}}</td>
+        <td>{{order.payload.doc.data().endingtime}}</td>
+        <td>{{order.payload.doc.data().reason}}</td>
+        <td>
+            <button class="btn  btn-success" (click)="confirm()">Confirm</button>
+        </td>
+    </tr>
+</table>
