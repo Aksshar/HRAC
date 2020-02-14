@@ -51,20 +51,28 @@
                         <div *ngIf="!HallNumber.value" class="invalid-feedback">
                             Hall Number is required
                         </div>
-            
+                        
                         <div *ngIf="HallNumber.value && HallNumber.dirty" class="invalid-feedback">
                         {{ HallNumber.value }} is not valid
                         </div>
+
+                        <div *ngIf="HallNumber.value && HallNumber.dirty" class="invalid-feedback">
+                          {{ HallNumber.value }} is not valid
+                          </div>
             
                         <div *ngIf="HallNumber.pending" class="notification is-info">
                         <div class="spinner-border spinner-border-sm text-success" role="status">
                             <span class="sr-only">Loading...</span>
                             </div>    Checking availability of {{ HallNumber.value }}
                         </div>
+
+                        <div *ngIf="hall">
+                          {{ HallNumber.value }} is already exists
+                        </div>
                       </div>
               
               <button type="submit" class="btn btn-primary" (click)="onSubmit()">Provide Access</button>
-              <button type="submit" class="btn btn-primary" (click)="onSubmit()">Update</button>
+              <!-- <button type="submit" class="btn btn-primary" (click)="onSubmit()">Update</button> -->
             </form>    
            
             <p>
