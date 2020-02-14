@@ -49,14 +49,14 @@ export class ManageBookingComponent implements OnInit{
     );
 
 confirm(){
-  let data = this.afs.collection("new_booking_requests").doc(order.payload.doc.id);
-  insertIndex(data);
+  /*insert(data);
   return this.afs.collection("new_booking_requests").doc(data.payload.doc.id).delete();
 }
 
 reject(){
   
   return this.afs.collection("new_booking_requests").doc(data.payload.doc.id).delete();
-}
+}*/
 
 }
+ 

@@ -8,11 +8,8 @@ export class ManagebookingService {
   constructor(private afs: AngularFirestore) { }
 
   
-  insertIndex(data){
-    return this.afs.collection("confirmed_bookings").add(data).then(function(docRef) {
-      console.log("Document written with ID: ", docRef.id);
-      
-})}
+  insert(data){
+    return this.afs.collection("confirmed_bookings").add(data);}
 
   getRequest() {
     return this.afs.collection("new_booking_requests").snapshotChanges();
