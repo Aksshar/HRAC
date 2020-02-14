@@ -36,14 +36,36 @@ export class ManageUsersComponent implements OnInit {
     });
     this.getUsers();
   }
+
+
+  //get data from database to form
+  updateuser(data){
+  var da=data.payload.doc.data()
+  this.IndexForm = this.fb.group({
+    IndexNumber:  [da.IndexNumber,[
+      Validators.required
+    ],CustomIndexValidator.IndexNumber(this.afs)],
+    RFIDNumber:  [da.RFIDNumber, [
+      Validators.required,
+    ], CustomRFIDValidator.RFIDNumber(this.afs) ],
+    stream: [da.stream, [Validators.required]],
+    academicYear: [da.academicYear, Validators.required],
+  });
+  return this.afs
+  .collection("studentIndex")
+  .doc(data.payload.doc.id)
+  .delete();
+}
   list;
 
   getUsers = () =>
     this.manageuser
       .getUsers()
       .subscribe(res => (this.list = res));
-
+ 
   deleteUser = data => this.manageuser.deleteUser(data);
+
+
 
   get IndexNumber() {
     return this.IndexForm.get('IndexNumber')
@@ -76,13 +98,13 @@ export class ManageUsersComponent implements OnInit {
 
     
   }
-
+/*
     //edit function
-  onEdit(stu: UserModel) {
+  onEdit(data: UserModel) {
     //get values to form
     this.IndexForm.setValue(UserModel);
-    this.service.formData = Object.assign({}, stu);
-  }
+    this.service.formData = Object.assign({}, data);
+  }*/
 
   onDelete(id: string) {
     if (confirm("Are you sure to delete this record?")) {

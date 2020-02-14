@@ -17,13 +17,13 @@ export class ManageUserService {
     console.error("Error adding document: ", error);
 });
   }
-
+  
 
   updateUser(data) {
     return this.afs
-      .collection("accessIndex")
+      .collection("studentIndex")
       .doc(data.payload.doc.id)
-      .set({ completed: true }, { merge: true });
+      .set({ completed: true },{ merge: true });
   }
 
 
