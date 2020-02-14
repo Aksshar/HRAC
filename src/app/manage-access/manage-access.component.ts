@@ -2,7 +2,7 @@ import { ManageAccessService } from './../manage-access.service';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore} from 'angularfire2/firestore';
-import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { map, take, debounceTime} from 'rxjs/Operators';
 
 @Component({
@@ -32,6 +32,7 @@ export class ManageAccessComponent implements OnInit {
     });
     this.getUsers();
   }
+
   updateUser(data){
     // console.log(data.data())
     var da=data.payload.doc.data()
@@ -44,8 +45,12 @@ export class ManageAccessComponent implements OnInit {
       ], CustomRFIDValidator.RFIDNumber(this.afs)],
       HallNumber:  [da.HallNumber, [
         Validators.required,
-      ], CustomHallValidator.HallNumber(this.afs)],
+      ], CustomHallValidator.HallNumber(this.afs),],
     });
+    return this.afs
+    .collection("accessIndex")
+    .doc(data.payload.doc.id)
+    .delete();
   }
   
   list;
@@ -72,19 +77,28 @@ export class ManageAccessComponent implements OnInit {
     return this.AccessForm.get('HallNumber')
   }
 
-
+hall;
   onSubmit() {
+    let val;
     let data = this.AccessForm.value;
-    if (this.AccessForm.valid) {
+     this.IndexHallValidator(this.AccessForm.value).subscribe(res => {if(res.length){this.hall = true;}val = res;});
+     console.log(this.hall);
+    if (this.AccessForm.valid && this.hall) {
       this.AccessForm.reset();
       this.manageAccess.insert(data).then(res => {
         this.toastr.success('Access Provided successfully!');
-        // this.manageAccess.updateUser( data).then(res=>{
-        //   this.toastr.success('Updated successfully!');
+      //   this.manageAccess.updateUser( data).then(res=>{
+      //     this.toastr.success('Updated successfully!');
       // });
       
       });
     }    
+  }
+
+  IndexHallValidator(data)
+  {
+    return this.afs.collection('accessIndex', ref => ref.where('RFIDNumber', '==', data.RFIDNumber ).where('HallNumber', '==', data.HallNumber))        
+    .valueChanges();
   }
 
 }
@@ -122,7 +136,6 @@ export class CustomRFIDValidator {
     }
   }
   
-
 }
 
 export class CustomHallValidator {
@@ -135,9 +148,20 @@ export class CustomHallValidator {
     .valueChanges().pipe(
       debounceTime(500),
       take(1),
-      map(arr => arr.length ? null : { HallNumberAvailable: false } ),
+      map(arr => arr.length ? null:{ HallNumberAvailable: false }  ),
     )
 
     }
   }
 }
+
+
+
+// export const IndexnHallValidator: ValidatorFn=(control:FormGroup):
+// ValidationErrors | null =>{
+//   const IndexNumber=control.get('IndexNumber');
+//   const HallNumber=control.get('HallNumber');
+//   return IndexNumber && HallNumber && IndexNumber.value === HallNumber.value ? {
+//     'CustomIndexnHallValidator' : false} : null;
+  
+// };
