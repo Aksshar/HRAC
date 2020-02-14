@@ -19,7 +19,7 @@
                 <span class="sr-only">Loading...</span>
                 </div>    Checking availability of {{ HallNumber.value }}
             </div>
-        </div>
+        </div> 
         
         <div class="invalid-feedback" role="alert">
               The Hall Number you trying to insert is already exists.!
@@ -43,10 +43,15 @@
   <p><strong>Available</strong></p>
   <hr class="my-4">
 <button type="button" class="btn btn-sm btn-danger"  (click)="deleteHalls(order)">Delete</button>
-<div *ngIf="!isAvailable"></div>
-<button type="button" class="btn btn-sm btn-warning" (click)="isAvailableHalls(order)">Not Available</button>
-   
-<button type="button" class="btn btn-sm btn-primary" (click)="updateHalls(data)">Update</button>
+<div>
+  <button type="button" *ngIf="!order.payload.doc.data().isAvailable" class="btn btn-sm btn-warning" (click)="isAvailableHalls(order)">Available</button>
+</div>
+<div>
+  <button type="button" *ngIf="order.payload.doc.data().isAvailable" class="btn btn-sm btn-warning" (click)="isNotAvailableHalls(order)">Not Available</button>
+</div>
+
+<!--    
+<button type="button" class="btn btn-sm btn-primary" (click)="updateHalls(data)">Update</button> -->
 
 </div>
 </div>
