@@ -1,1 +1,84 @@
 
+<button (click)="sendEmail()">Send Email via Cloud Function</button>
+<!-- Request booking Table -->
+<h6 class="text-center">Request Booking</h6><br/>
+<table class="table">
+    <thead>
+        <th>SelectDate</th>
+        <th>Startingtime</th>
+        <th>Endingtime</th>
+        <th>Reason</th>
+        <th></th>
+        <th></th>
+    </thead>
+    
+    <ng-container *ngFor ="let order of list1">
+        <tr *ngIf="!order.payload.doc.data().rejected && !order.payload.doc.data().confirmed">
+        <td>{{order.payload.doc.data().selectDate}}</td>
+        <td>{{order.payload.doc.data().startingtime}}</td>
+        <td>{{order.payload.doc.data().endingtime}}</td>
+        <td>{{order.payload.doc.data().reason}}</td>
+        <td>
+            <button  type="button" class="btn  btn-success" (click)="confirm(order)">confirm</button>
+        </td>
+        <td>
+            <button class="btn  btn-danger" (click)="rejectrequest(order)">reject</button>
+        </td>
+    </tr>
+    </ng-container>
+
+    
+</table>
+
+<!-- Confirmed booking Table -->
+<h6 class="text-center">Confirmed Booking</h6><br/>
+<table class="table " >
+    <thead>
+        <th>SelectDate</th>
+        <th>Startingtime</th>
+        <th>Endingtime</th>
+        <th>Reason</th>
+        <th></th>
+        
+    </thead>
+<ng-container *ngFor ="let order of list1">
+            <tr *ngIf="order.payload.doc.data().confirmed && !order.payload.doc.data().rejected"  >
+                <td>{{order.payload.doc.data().selectDate}}</td>
+                <td>{{order.payload.doc.data().startingtime}}</td>
+                <td>{{order.payload.doc.data().endingtime}}</td>
+                <td>{{order.payload.doc.data().reason}}</td>
+                <td>
+                    <button class="btn  btn-danger" (click)="reject(order)">reject</button>
+                </td>
+                
+            </tr>
+        </ng-container>
+
+</table>
+
+
+
+<!-- rejected booking Table -->
+<h6 class="text-center">Rejected Booking</h6><br/>
+<table class="table " >
+    <thead>
+        <th>SelectDate</th>
+        <th>Startingtime</th>
+        <th>Endingtime</th>
+        <th>Reason</th>
+        <th></th>  
+    </thead>
+    
+    <ng-container *ngFor ="let order of list1">
+        <tr *ngIf="order.payload.doc.data().rejected && !order.payload.doc.data().confirmed">
+        <td>{{order.payload.doc.data().selectDate}}</td>
+        <td>{{order.payload.doc.data().startingtime}}</td>
+        <td>{{order.payload.doc.data().endingtime}}</td>
+        <td>{{order.payload.doc.data().reason}}</td>
+        <td>
+            <button class="btn  btn-success" (click)="confirm2(order)">Confirm</button>
+        </td>
+    </tr>
+    </ng-container>
+</table>
+

@@ -11,7 +11,7 @@ import { ManageHallsService } from '../manage-halls.service';
   styleUrls: ['./manage-halls.component.css']
 })
 export class ManageHallsComponent implements OnInit {
-  isAvailable: boolean=true;
+  
 
   HallsForm: FormGroup;
   constructor(private afs: AngularFirestore, private fb: FormBuilder, private toastr: ToastrService, private managehalls: ManageHallsService){}
@@ -29,6 +29,22 @@ export class ManageHallsComponent implements OnInit {
     this.getHalls();
   }
 
+  // updateHalls(data){
+  //   var up=data.payload.doc.data()
+  //   this.HallsForm = this.fb.group({
+  //     HallNumber:  [up.HallNumber, [
+  //       Validators.required
+  //     ],CustomHallValidator.HallNumber(this.afs)],
+  //     Capacity:  [up.Capacity, [
+  //       Validators.required,
+  //     ],],
+  //   });
+  //   return this.afs
+  //   .collection("Halls")
+  //   .doc(data.payload.doc.id)
+  //   .delete();
+  // }
+
   list;
 
   getHalls = () =>
@@ -37,13 +53,16 @@ export class ManageHallsComponent implements OnInit {
       .subscribe(res => (this.list = res));
 
   deleteHalls = data => this.managehalls.deleteHalls(data);
-  updateHalls = data => this.managehalls.updateHalls(data);
+  //updateHalls = data => this.managehalls.updateHalls(data);
  
   isAvailableHalls(order){
-    this.afs.collection("Halls").doc(order.payload.doc.id).update({isAvailable:false});
-    this.isAvailable=!this.isAvailable;
+    this.afs.collection("Halls").doc(order.payload.doc.id).update({isAvailable:true});
 
-  } 
+  }
+  isNotAvailableHalls(order){
+    this.afs.collection("Halls").doc(order.payload.doc.id).update({isAvailable:false});
+
+  }  
 
   get HallNumber() {
     return this.HallsForm.get('HallNumber')

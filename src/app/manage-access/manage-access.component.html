@@ -4,7 +4,7 @@
     <div class="card-body">
             <h5 class="card-title">Access Management</h5>
             <p class="card-text">Provide Access to the Users by adding their index Numbers, RFID tag Numbers  and Hall.</p> 
-            <form [formGroup]="AccessForm">
+            <form [formGroup]="AccessForm" >
               <input type="hidden" class="form-control" formControlName="IndexNumber" id="IndexNumber"  [ngClass]="{ 'is-invalid': (IndexNumber.touched && IndexNumber.invalid) || (IndexNumber.value && IndexNumber.invalid) }" >
               <div class="form-group">
                 <label for="IndexNumber">User Index Number</label>
@@ -51,20 +51,30 @@
                         <div *ngIf="!HallNumber.value" class="invalid-feedback">
                             Hall Number is required
                         </div>
-            
+                        
                         <div *ngIf="HallNumber.value && HallNumber.dirty" class="invalid-feedback">
                         {{ HallNumber.value }} is not valid
                         </div>
+
+                        <div *ngIf="HallNumber.value && HallNumber.dirty" class="invalid-feedback">
+                          {{ HallNumber.value }} is not valid
+                          </div>
             
                         <div *ngIf="HallNumber.pending" class="notification is-info">
                         <div class="spinner-border spinner-border-sm text-success" role="status">
                             <span class="sr-only">Loading...</span>
                             </div>    Checking availability of {{ HallNumber.value }}
                         </div>
+
+                        <div *ngIf="hall">
+                          {{ HallNumber.value }} is already exists
+                        </div>
                       </div>
               
               <button type="submit" class="btn btn-primary" (click)="onSubmit()">Provide Access</button>
+              <!-- <button type="submit" class="btn btn-primary" (click)="onSubmit()">Update</button> -->
             </form>    
+           
             <p>
 
                     <table class="table table-hover">
@@ -101,6 +111,7 @@
                                 </tr>
                               </tbody>
                           </table>
+                         
  </div>
       
           

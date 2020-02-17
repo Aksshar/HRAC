@@ -18,13 +18,21 @@ export class ManageHallsService {
   }
 
 
-  updateHalls(data) {
-    return this.afs
-      .collection("Halls")
-      .doc(data.payload.doc.id)
-      .set({ completed: true }, { merge: true });
-  }
+  // updateHalls(data) {
+  //   return this.afs
+  //     .collection("Halls")
+  //     .doc(data.payload.doc.id)
+  //     .set({ completed: true }, { merge: true });
+  // }
 
+
+  updateHalls(data){
+    return this.afs
+    .collection("Halls")
+    .doc(data.payload.doc.id)
+    .update(data);
+
+  }  
 
   deleteHalls(data) {
     return this.afs
