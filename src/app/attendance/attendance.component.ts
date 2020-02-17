@@ -64,10 +64,12 @@ export class AttendanceComponent implements OnInit {
       this.total_count = 0;
       this.at_count = 0;
       for (let i of this.final) {
-        if (i.IndexNumber === IndexNumber)
+        if (i.indexNumber === IndexNumber)
         {
           this.total_count = this.total_count + 1;
-          if (i.isAttended) this.at_count = this.at_count + 1;
+          if (i.attended) { this.at_count = this.at_count + 1 };
+          console.log(this.total_count);
+          console.log(this.at_count);
         }
       }
     });

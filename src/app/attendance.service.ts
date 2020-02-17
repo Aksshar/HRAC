@@ -31,6 +31,7 @@ export class AttendanceService {
   
   indexes;
 
+  //generting students for each date of subject, purpose of marking attendance
   generateStudents(subjectCode, academicYear, list,stream) {
     this.db.collection('studentIndex', ref => ref.where('year', '==', academicYear).where('stream','==',stream)).valueChanges().subscribe(val => {
       this.indexes = val;
@@ -50,6 +51,25 @@ export class AttendanceService {
     });
    
     
+  }
+
+//sending booking data to confirmed booking
+  confirmBooking(subjectCode,lectureHall, list, startingtime, endingtime) {
+    for (let date of list) {
+      let dateString = date.year.toString() + '-' + date.month.toString() + '-' + date.day.toString();
+      this.db.collection('confirmed_bookings').add({
+        date: dateString,
+        startingtime: startingtime,
+        endingtime: endingtime,
+        subjectCode: subjectCode,
+        lectureHall: lectureHall
+      }).then(function (docRef){
+        for(let del of list) {
+          this.db.collection('Dates').doc(del.id).delete();
+        }
+      });
+      
+    }
   }
 
   }

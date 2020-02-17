@@ -31,6 +31,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['manage-access'], { relativeTo: this.route});
   }
 
+  showreport() {
+    this.router.navigate(['report'], { relativeTo: this.route});
+  }
+
   ngOnInit() {
   }
 

@@ -7,11 +7,11 @@
       <form [formGroup]="timetableForm" (ngSubmit)="onSubmit()">
           <div class="form-group" style="width: 50%;">
               <label for="Startingtime">Lecture Starting Time</label>
-              <input type="time" class="form-control" id="Startingtime" formControlName="startingtime">
+              <input type="time" class="form-control"   (keyup)="onKeys($event)" id="Startingtime" formControlName="startingtime">
             </div>
             <div class="form-group" style="width: 50%;">
                 <label for="Endingtime">Lecture Ending Time</label>
-                <input type="time" class="form-control" id="Endingtime" formControlName="endingtime">
+                <input type="time" class="form-control" (keyup)="onKeye($event)" id="Endingtime" formControlName="endingtime">
               </div>
               <hr>
           <div class="form-group" >
@@ -58,7 +58,7 @@
             </div>
             <div class="form-group">
                 <label for="hall">Lecture Hall</label>
-                <input type="text" class="form-control" id="hall" formControlName="lectureHall" [ngClass]="{'is-invalid': lectureHall.touched && lectureHall.invalid}" placeholder="Enter Lecture Hall Number">
+                <input type="text" class="form-control" id="hall" (keyup)="onKeyh($event)" formControlName="lectureHall" [ngClass]="{'is-invalid': lectureHall.touched && lectureHall.invalid}" placeholder="Enter Lecture Hall Number">
                 <div *ngIf="lectureHall.touched && lectureHall.invalid" class="invalid-feedback">
                     lecture Hall is required.
                   </div>
@@ -83,12 +83,11 @@
       <div class="input-group" style="width:50%;">
         <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
         </div>
-        <p style="padding-top:10px;"><button type="submit" class="btn btn-sm btn-primary" (click)="selectDates()">Select date</button></p>
+        <p style="padding-top:10px;"><button type="submit" class="btn btn-sm btn-primary" (click)="selectDates(startingtime,endingtime,lectureHall)">Select date</button></p>
         <div style="padding-top: 5px;" *ngFor="let Date of list"><div class="timecard">
-            {{Date.year}}/{{Date.month}}/{{Date.day}} - <button class="btn btn-sm btn-warning" (click)="onDelete(Date.id)"><strong>remove</strong></button></div>         
+            {{Date.year}}/{{Date.month}}/{{Date.day}} - <button class="btn btn-sm btn-warning" (click)="onDelete(Date)"><strong>remove</strong></button></div>         
         </div>
   </div>
 </div>
-
 
 

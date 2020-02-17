@@ -1,3 +1,4 @@
+import { HttpClientModule, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { ManageAccessService } from './manage-access.service';
 import { UserManagementService } from './user-management.service';
 import { UserAttendanceService } from './user-attendance.service';
@@ -40,6 +41,7 @@ import { ScheduleModule, RecurrenceEditorModule, DayService, MonthService, WeekS
 import { HallReservationComponent } from './hall-reservation/hall-reservation.component';
 import { MybookingComponent } from './mybooking/mybooking.component';
 import { LectureHallComponent } from './lecture-hall/lecture-hall.component';
+import { ReportComponent } from './report/report.component';
 
 
 
@@ -63,7 +65,8 @@ import { LectureHallComponent } from './lecture-hall/lecture-hall.component';
     CalenderComponent,
     HallReservationComponent,
     MybookingComponent,
-    LectureHallComponent
+    LectureHallComponent,
+    ReportComponent
  
   ],
   imports: [
@@ -85,7 +88,8 @@ import { LectureHallComponent } from './lecture-hall/lecture-hall.component';
           { path: 'manage-booking', component: ManageBookingComponent },
           { path: 'manage-halls', component: ManageHallsComponent },
           { path: 'currentsemester', component: CurrentsemesterComponent },
-          { path: 'manage-access', component: ManageAccessComponent}
+          { path: 'manage-access', component: ManageAccessComponent },
+          { path: 'report', component: ReportComponent}
           
         ]
       }
@@ -94,6 +98,7 @@ import { LectureHallComponent } from './lecture-hall/lecture-hall.component';
     FormsModule,
     AppRoutingModule,
     NgbModule,
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({ timeOut: 6000, positionClass: 'toast-top-center', preventDuplicates: false }),

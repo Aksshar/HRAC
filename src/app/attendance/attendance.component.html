@@ -33,15 +33,19 @@
                                             <div class="attended alert alert-success" *ngIf="date.attended" style="width: 250px;text-align: center;margin: 10px;">
                                                 <h6>{{date.date}}</h6>
                                                 <h6>Attended</h6>
-                                            </div> 
+                                            </div>
+                                            <div class="attended alert alert-danger" *ngIf="!date.attended" style="width: 250px;text-align: center;margin: 10px;">
+                                                <h6>{{date.date}}</h6>
+                                                <h6>Attended</h6>
+                                            </div>  
                                               
                                             </div>
                                 </ng-container>
                             </div>
-                            <p class="card-text" *ngIf="at_count"><strong>Attendance percentage : </strong></p>
+                            <p class="card-text"><strong>Attendance percentage : </strong></p>
                             <div class="row">
                                     <div class="col-md-2">
-                                            <div class="progress green" *ngIf="at_count">
+                                            <div class="progress green">
                                                     <span class="progress-left">
                                                         <span class="progress-bar"></span>
                                                     </span>

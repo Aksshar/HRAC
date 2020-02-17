@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
@@ -16,6 +17,7 @@ import { BookingDate } from './booking-data';
   styleUrls: ['./hall-reservation.component.css']
 })
 export class HallReservationComponent implements OnInit {
+  user: firebase.User;
   closeResult: string;
   hallNumber;
   sub;
@@ -27,7 +29,8 @@ export class HallReservationComponent implements OnInit {
   public eventSettings: EventSettingsModel;
 
   bookingForm: FormGroup;
-  constructor(private modalService: NgbModal,private fb: FormBuilder, private afs: AngularFirestore, private _Activatedroute:ActivatedRoute, private _router: Router) { }
+  constructor(private modalService: NgbModal, private fb: FormBuilder, private afs: AngularFirestore, private _Activatedroute: ActivatedRoute, private _router: Router, private afAuth: AngularFireAuth)
+  {    afAuth.authState.subscribe(user => this.user = user);}
 
   openLg(content) {
     this.modalService.open(content,{size: 'lg'}).result.then((result) => {
@@ -50,15 +53,17 @@ export class HallReservationComponent implements OnInit {
     this.sub = this._Activatedroute.paramMap.subscribe(params => {
       this.hallNumber = params.get('hallNumber');
       console.log(this.hallNumber);
-      this.afs.collection('booking', ref => ref.where('hallNumber', '==',this.hallNumber)).valueChanges().subscribe(ref => {
+      this.afs.collection('confirmed_bookings', ref => ref.where('lectureHall', '==',this.hallNumber)).valueChanges().subscribe(ref => {
         this.list = ref;
         console.log(this.list);
         for (let i of this.list) {
           let temp = new BookingDate();
-          console.log(new Date(i.stime));
-          temp.StartTime = new Date(i.stime);
+          let s = i.date + ' ' + i.startingtime;
+          let e = i.date + ' ' + i.endingtime;
+          console.log(new Date(s));
+          temp.StartTime = new Date(s);
           console.log(temp);
-          temp.EndTime = new Date(i.etime);
+          temp.EndTime = new Date(e);
           temp.Subject = i.Subject;
           this.dataList.push(temp);
         }
@@ -84,7 +89,8 @@ export class HallReservationComponent implements OnInit {
         startingtime: this.bookingForm.value.startingtime,
         endingtime: this.bookingForm.value.endingtime,
         reason: this.bookingForm.value.reason,
-        confirmed: false
+        confirmed: false,
+        email: this.user.email,
       }).then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
       })
