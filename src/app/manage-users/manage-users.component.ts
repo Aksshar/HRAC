@@ -80,7 +80,7 @@ export class ManageUsersComponent implements OnInit {
   }
 
   get academicYear() {
-    return this.IndexForm.get('RFIDNumber')
+     return this.IndexForm.get('RFIDNumber')
   }
 
   onSubmit() {
