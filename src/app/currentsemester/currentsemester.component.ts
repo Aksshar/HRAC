@@ -144,6 +144,7 @@ export class CurrentsemesterComponent implements OnInit {
     const stream = this.timetableForm.value.stream;   
     this.attendance.insertTimeTable(subjectCode, academicYear, lectureHall, lecturer, this.list, startingtime, endingtime,stream);
     this.attendance.generateStudents(subjectCode, academicYear, this.list, stream);
+      this.attendance.insertsubeject(subjectCode, academicYear);  
     this.attendance.confirmBooking(subjectCode, lectureHall, this.list, startingtime, endingtime);
     this.timetableForm.reset();  
       for(let del of this.list) {

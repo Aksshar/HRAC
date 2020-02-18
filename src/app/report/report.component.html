@@ -1,1 +1,51 @@
-<p>report works!</p>
+<p></p>
+<hr>
+<div class="container">
+<div class="jumbotron">
+    <p><strong>Download Attendance reports for each subjects</strong></p>
+    First Year Subjects
+    <hr>
+<div class="row"> 
+    <div class="container">
+<div *ngFor="let code of subject">
+    <button type="button" *ngIf='code.year == "1"' class="btn btn-sm btn-warning" (click)="getattendance(code.code)">{{code.code}}</button>
+</div>
+</div>
+</div>  
+
+<hr>
+Second Year Subjects
+<hr>
+<div class="row">
+    <div class="container">
+<div *ngFor="let code of subject">
+<button type="button" *ngIf='code.year == "2"' class="btn btn-sm btn-warning" (click)="getattendance(code.code)">{{code.code}}</button>
+</div>
+</div>
+</div>
+
+<hr>
+Third Year Subjects
+<hr>
+<div class="row">
+<div class="container">
+<div *ngFor="let code of subject">
+<button type="button" *ngIf='code.year == "3"' class="btn btn-sm btn-warning" (click)="getattendance(code.code)">{{code.code}}</button>
+</div>
+</div>
+</div>
+
+<hr>
+Fourth Year Subjects
+<hr>
+<div class="row">
+<div class="container">
+<div *ngFor="let code of subject">
+<button type="button" *ngIf='code.year == "4"' class="btn btn-sm btn-warning" (click)="getattendance(code.code)">{{code.code}}</button>
+</div>
+</div>
+</div>
+<hr>
+
+</div>
+</div>

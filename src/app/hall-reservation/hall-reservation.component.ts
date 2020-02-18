@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventSettingsModel, View, DayService, WeekService, WorkWeekService, MonthService, AgendaService } from '@syncfusion/ej2-angular-schedule';
 import { DataManager, WebApiAdaptor } from '@syncfusion/ej2-data';
 import { BookingDate } from './booking-data';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -29,7 +30,7 @@ export class HallReservationComponent implements OnInit {
   public eventSettings: EventSettingsModel;
 
   bookingForm: FormGroup;
-  constructor(private modalService: NgbModal, private fb: FormBuilder, private afs: AngularFirestore, private _Activatedroute: ActivatedRoute, private _router: Router, private afAuth: AngularFireAuth)
+  constructor(private modalService: NgbModal, private fb: FormBuilder, private afs: AngularFirestore, private _Activatedroute: ActivatedRoute, private _router: Router, private afAuth: AngularFireAuth,private toastr: ToastrService)
   {    afAuth.authState.subscribe(user => this.user = user);}
 
   openLg(content) {
@@ -80,25 +81,58 @@ export class HallReservationComponent implements OnInit {
     })
   }
 
+  temp;
+  
   onSubmit() {
     let data = this.bookingForm.value;
+    // let check = this.checkdate(this.bookingForm.value);
+    // console.log(this.noerror);
     if (this.bookingForm.valid) {
-      this.afs.collection('new_booking_requests').add({
-        requestedDate: new Date(),
-        selectDate: this.bookingForm.value.selectDate,
-        startingtime: this.bookingForm.value.startingtime,
-        endingtime: this.bookingForm.value.endingtime,
-        reason: this.bookingForm.value.reason,
-        confirmed: false,
-        email: this.user.email,
-      }).then(function (docRef) {
-        console.log("Document written with ID: ", docRef.id);
-      })
-        .catch(function (error) {
-          console.error("Error adding document: ", error);
-        });
-    }
-    this.modalService.dismissAll('Save click');
+      let status = 'true';
+      let start = this.bookingForm.value.selectDate + ' ' + this.bookingForm.value.startingtime;
+      let end = this.bookingForm.value.selectDate + ' ' + this.bookingForm.value.endingtime;
+      let startdate = new Date(start);
+      let enddate = new Date(end);
+      this.afs.collection('confirmed_bookings', ref => ref.where('lectureHall', '==', this.hallNumber)).valueChanges().subscribe(ref => {
+        this.temp = ref;
+        console.log(this.temp);
+        for (let i of this.temp) {
+          let s = i.date + ' ' + i.startingtime;
+          let e = i.date + ' ' + i.endingtime;
+          let starttime = new Date(s);
+          let endtime = new Date(e);
+          if (+startdate >= +starttime && +enddate <= +endtime) {
+            this.toastr.warning('time slot already booked!');
+            status = 'false';
+            console.log(status);
+          }
+          else if (+startdate <= +starttime && +enddate >= +endtime) {
+            this.toastr.warning('time slot already booked!');
+            status = 'false';
+          }
+          //+stime >= +bstime && +etime <= +betime
+        }
+      });
+
+      console.log(status);
+        if (status === 'true') {
+          this.afs.collection('new_booking_requests').add({
+            requestedDate: new Date(),
+            selectDate: this.bookingForm.value.selectDate,
+            startingtime: this.bookingForm.value.startingtime,
+            endingtime: this.bookingForm.value.endingtime,
+            reason: this.bookingForm.value.reason,
+            confirmed: false,
+            email: this.user.email,
+          }).then(function (docRef) {
+            console.log("Document written with ID: ", docRef.id);
+          })
+            .catch(function (error) {
+              console.error("Error adding document: ", error);
+            });
+        }
+        this.toastr.success('booking request successfully sent!');
+      }
   }
   
   ngOnDestroy() {
@@ -108,6 +142,7 @@ export class HallReservationComponent implements OnInit {
 
   onBack(): void {
     this._router.navigate(['product']);
- }
+  }
+  
 
 }

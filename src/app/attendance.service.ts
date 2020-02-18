@@ -53,6 +53,13 @@ export class AttendanceService {
     
   }
 
+  insertsubeject(subjectCode, academicYear) {
+    this.db.collection('subjectCode').add({
+      code: subjectCode,
+      year: academicYear
+    });
+  }
+
 //sending booking data to confirmed booking
   confirmBooking(subjectCode,lectureHall, list, startingtime, endingtime) {
     for (let date of list) {
