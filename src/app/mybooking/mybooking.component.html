@@ -3,25 +3,26 @@
             <div class="card-body card-bg">
                 <div class="alert alert-danger alert-title"><strong>User Booking Request History</strong></div>
                 <div class="card card-block-purple">
-                    <div class="card-body">
+                    <div *ngFor="let it of items">
+                    <div class="card-body" *ngIf="it.confirmed">
                         <span class="badge badge-success">Confirmed</span>
-                        | requested date | | W002 | | starting time| | ending time |
+                        | | hall:{{it.hall}} | | starting-time:{{it.startingtime}}| | ending-time:{{it.endingtime}} |
                         <hr>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod hic est temporibus explicabo sequi earum fugit nostrum, quos excepturi modi, porro autem perspiciatis saepe! Sit dolorum autem ad distinctio fuga.
+                        {{it.reason}}
                         <hr>
                         <div class="alert alert-sm alert-danger"><strong>Cancel booking</strong></div>
                     </div>
-                </div>
                 <div class="card card-block-green">
-                    <div class="card-body">
+                    <div class="card-body" *ngIf="!it.confirmed">
                         <span class="badge badge-secondary">Not-confirmed</span>
-                        | requested date | | W002 | | starting time| | ending time |
+                        | | hall:{{it.hall}} | | starting-time:{{it.startingtime}}| | ending-time:{{it.endingtime}} |
                         <hr>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod hic est temporibus explicabo sequi earum fugit nostrum, quos excepturi modi, porro autem perspiciatis saepe! Sit dolorum autem ad distinctio fuga.
                         <hr>
-                        <div class="alert alert-sm alert-danger"><strong>Cancel booking</strong><div>
+                        <div class="alert alert-sm alert-danger" (click)="delete(it)"><strong>Cancel booking</strong><div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
 </div>

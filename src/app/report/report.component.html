@@ -8,7 +8,7 @@
 <div class="row"> 
     <div class="container">
 <div *ngFor="let code of subject">
-    <button type="button" *ngIf='code.year == "1"' class="btn btn-sm btn-warning" (click)="getattendance(code.code)">{{code.code}}</button>
+    <button type="button" *ngIf='code.year == "1"' class="btn btn-sm btn-warning" (click)="getattendance(code.code)"><strong>{{code.code}}</strong></button>
 </div>
 </div>
 </div>  
@@ -19,7 +19,7 @@ Second Year Subjects
 <div class="row">
     <div class="container">
 <div *ngFor="let code of subject">
-<button type="button" *ngIf='code.year == "2"' class="btn btn-sm btn-warning" (click)="getattendance(code.code)">{{code.code}}</button>
+<button type="button" *ngIf='code.year == "2"' class="btn btn-sm btn-warning" (click)="getattendance(code.code)"><strong>{{code.code}}</strong></button>
 </div>
 </div>
 </div>
@@ -30,7 +30,7 @@ Third Year Subjects
 <div class="row">
 <div class="container">
 <div *ngFor="let code of subject">
-<button type="button" *ngIf='code.year == "3"' class="btn btn-sm btn-warning" (click)="getattendance(code.code)">{{code.code}}</button>
+<button type="button" *ngIf='code.year == "3"' class="btn btn-sm btn-warning" (click)="getattendance(code.code)"><strong>{{code.code}}</strong></button>
 </div>
 </div>
 </div>
@@ -41,7 +41,7 @@ Fourth Year Subjects
 <div class="row">
 <div class="container">
 <div *ngFor="let code of subject">
-<button type="button" *ngIf='code.year == "4"' class="btn btn-sm btn-warning" (click)="getattendance(code.code)">{{code.code}}</button>
+<button type="button" *ngIf='code.year == "4"' class="btn btn-sm btn-warning" (click)="getattendance(code.code)"><strong>{{code.code}}</strong></button>
 </div>
 </div>
 </div>

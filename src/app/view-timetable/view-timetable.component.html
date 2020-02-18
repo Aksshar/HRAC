@@ -1,0 +1,16 @@
+<hr>
+<div class="container">
+    <div>
+       <strong>Attendance Timetable</strong> 
+        <hr>
+        <div class="container">
+            <div *ngFor="let item of timetable">
+                <div class="row">
+                <h6 class="alert alert-warning">date:<strong>{{item.date}}  |   </strong>From:<strong>{{item.startingtime}}  |   </strong>To:<strong>{{item.endingtime}}  |   </strong>lectureHall:<strong>{{item.lectureHall}}</strong>
+                  ||-  <button type="submit" (click)="delete(item)" class="btn btn-sm btn-danger" style="background-color: darkorchid;border: none;">cancel</button>
+                </h6>
+                
+                </div>
+            </div>
+        </div>
+    </div>

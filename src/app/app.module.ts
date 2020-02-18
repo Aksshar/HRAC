@@ -42,6 +42,7 @@ import { HallReservationComponent } from './hall-reservation/hall-reservation.co
 import { MybookingComponent } from './mybooking/mybooking.component';
 import { LectureHallComponent } from './lecture-hall/lecture-hall.component';
 import { ReportComponent } from './report/report.component';
+import { ViewTimetableComponent } from './view-timetable/view-timetable.component';
 
 
 
@@ -66,7 +67,8 @@ import { ReportComponent } from './report/report.component';
     HallReservationComponent,
     MybookingComponent,
     LectureHallComponent,
-    ReportComponent
+    ReportComponent,
+    ViewTimetableComponent
  
   ],
   imports: [
@@ -89,7 +91,8 @@ import { ReportComponent } from './report/report.component';
           { path: 'manage-halls', component: ManageHallsComponent },
           { path: 'currentsemester', component: CurrentsemesterComponent },
           { path: 'manage-access', component: ManageAccessComponent },
-          { path: 'report', component: ReportComponent}
+          { path: 'report', component: ReportComponent },
+          { path: 'timetable', component: ViewTimetableComponent}
           
         ]
       }

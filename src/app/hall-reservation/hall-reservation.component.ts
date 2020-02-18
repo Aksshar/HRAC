@@ -124,6 +124,7 @@ export class HallReservationComponent implements OnInit {
             reason: this.bookingForm.value.reason,
             confirmed: false,
             email: this.user.email,
+            hall: this.hallNumber
           }).then(function (docRef) {
             console.log("Document written with ID: ", docRef.id);
           })

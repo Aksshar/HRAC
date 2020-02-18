@@ -55,8 +55,18 @@ confirm(order){
   this.afs.collection("new_booking_requests").doc(order.payload.doc.id).update({confirmed:true});
   const dat= doc.get().subscribe(function(doc){doc.data();
     console.log(doc.data()); 
+
   });
  
+  this.afs.collection("confirmed_bookings").add(
+    {
+      date: order.payload.doc.requestedDate,
+      startingtime: order.payload.doc.startingtime,
+      endingtime: order.payload.doc.endingtime,
+      lectureHall: order.payload.doc.hall,
+    }
+  );
+    //console.log("Document written with ID: ", docRef.id);
   //this.afs.collection("new_booking_requests").doc(order.payload.doc.id).delete();
 
   

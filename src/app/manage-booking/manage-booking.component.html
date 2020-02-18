@@ -8,6 +8,7 @@
         <th>Startingtime</th>
         <th>Endingtime</th>
         <th>Reason</th>
+        <th>Hall</th>
         <th></th>
         <th></th>
     </thead>
@@ -18,6 +19,7 @@
         <td>{{order.payload.doc.data().startingtime}}</td>
         <td>{{order.payload.doc.data().endingtime}}</td>
         <td>{{order.payload.doc.data().reason}}</td>
+        <td>{{order.payload.doc.data().hall}}</td>
         <td>
             <button  type="button" class="btn  btn-success" (click)="confirm(order)">confirm</button>
         </td>

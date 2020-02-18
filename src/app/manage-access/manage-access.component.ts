@@ -83,7 +83,7 @@ hall;
     let data = this.AccessForm.value;
      this.IndexHallValidator(this.AccessForm.value).subscribe(res => {if(res.length){this.hall = true;}val = res;});
      console.log(this.hall);
-    if (this.AccessForm.valid && this.hall) {
+    if (this.AccessForm.valid) {
       this.AccessForm.reset();
       this.manageAccess.insert(data).then(res => {
         this.toastr.success('Access Provided successfully!');

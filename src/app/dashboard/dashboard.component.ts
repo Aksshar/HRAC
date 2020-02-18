@@ -35,6 +35,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['report'], { relativeTo: this.route});
   }
 
+  showtimetable() {
+    this.router.navigate(['timetable'], { relativeTo: this.route});
+  }
+  timetable
   ngOnInit() {
   }
 
