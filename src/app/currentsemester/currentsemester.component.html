@@ -71,9 +71,6 @@
                       lecturer name is required.
                     </div>
                 </div>
-        
-      
-             
           <button type="submit" class="btn btn-primary">Insert Into Time Schedule</button>
         </form>
         <hr>
@@ -84,6 +81,7 @@
         <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
         </div>
         <p style="padding-top:10px;"><button type="submit" class="btn btn-sm btn-primary" (click)="selectDates(startingtime,endingtime,lectureHall)">Select date</button></p>
+        <p style="color:red;">{{do}}</p>
         <div style="padding-top: 5px;" *ngFor="let Date of list"><div class="timecard">
             {{Date.year}}/{{Date.month}}/{{Date.day}} - <button class="btn btn-sm btn-warning" (click)="onDelete(Date)"><strong>remove</strong></button></div>         
         </div>

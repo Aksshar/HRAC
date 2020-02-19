@@ -35,7 +35,7 @@ export class CurrentsemesterComponent implements OnInit {
   onKeyh(event: any) { // without type info
     this.lectureHal = event.target.value;
   }
-  
+  do;
   selectDates() {
     this.db.collection('confirmed_bookings').valueChanges().subscribe(ref => {
       this.bookings = ref;
@@ -68,13 +68,15 @@ export class CurrentsemesterComponent implements OnInit {
           }
         }
       }
-      if (status==='true')
+      if (status === 'true')
       {
+        this.do = ' ';
         return this.db.collection("Dates").add(this.model);
+
       }
       else
       {
-        this.toastr.warning('time slot already booked!');
+        this.do = 'timeslot already booked';
       }
       
     });
